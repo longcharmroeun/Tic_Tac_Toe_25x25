@@ -13,23 +13,24 @@ namespace Tic_Tac_Toe_25x25
     class ButtonManager:Array2D
     {
         private Random Random;
-        public Button[,] button;
+        public Button[] button;
         public ButtonManager(Form1 form)
         {
             Random = new Random();
             int x = 0, y = 1, index = 0;
-            button = new Button[Size,Size];
+            button = new Button[Count];
             for (int i = 0; i < Size; i++)
             {
                 for (int j = 0; j < Size; j++)
                 {
-                    this.button[i,j] = new System.Windows.Forms.Button();
-                    this.button[i,j].Location = new System.Drawing.Point(x, y);
-                    this.button[i,j].Size = new System.Drawing.Size(30, 30);
-                    this.button[i, j].TabIndex = index;
-                    this.button[i,j].UseVisualStyleBackColor = true;
-                    this.button[i, j].Click += ButtonManager_Click;
-                    form.Controls.Add(button[i,j]);
+                    this.button[index] = new System.Windows.Forms.Button();
+                    this.button[index].Location = new System.Drawing.Point(x, y);
+                    this.button[index].Size = new System.Drawing.Size(30, 30);
+                    this.button[index].TabIndex = index;
+                    this.button[index].Text = index.ToString();
+                    this.button[index].UseVisualStyleBackColor = true;
+                    this.button[index].Click += ButtonManager_Click;
+                    form.Controls.Add(button[index]);
                     x += 30;
                     index++;
                 }
@@ -55,15 +56,32 @@ namespace Tic_Tac_Toe_25x25
         
         private void EnermyClick()
         {
-            int x = Random.Next(0, 25);
-            int y = Random.Next(0, 25);
-            if (!(IsUsed(button[x, y].TabIndex)))
+            while (true)
             {
-                button[x, y].Image = Image.FromFile(@"..\..\Image\cross.png");
-                EnermyClick(button[x, y].TabIndex);
-                if (IsEnermyWin())
+                int index = Random.Next(0, 625);
+                if (!(IsUsed(index)))
                 {
-                    MessageBox.Show("You lost");
+                    if (Is3Or4Used(out int First, out int Last))
+                    {
+                        if (!(IsUsed(First)))
+                        {
+                            button[First].Image = Image.FromFile(@"..\..\Image\cross.png");
+                            EnermyClick(First);
+                        }
+                        else if (!(IsUsed(Last)))
+                        {
+                            button[Last].Image = Image.FromFile(@"..\..\Image\cross.png");
+                            EnermyClick(Last);
+                            break;
+                        }
+                    }
+                    button[index].Image = Image.FromFile(@"..\..\Image\cross.png");
+                    EnermyClick(index);
+                    if (IsEnermyWin())
+                    {
+                        MessageBox.Show("You lost");
+                    }
+                    break;
                 }
             }
         }
