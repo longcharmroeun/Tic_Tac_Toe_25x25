@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="Array2D.cs" />
     <Compile Include="ButtonManager.cs" />
+    <Compile Include="WinEventArgs.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

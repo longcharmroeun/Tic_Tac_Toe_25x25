@@ -9,12 +9,17 @@ namespace Tic_Tac_Toe_25x25
 {
     class Array2D
     {
-        public short[] Data { get; set; }
-        public const int Count = 625;
-        public const int Size = 25;
+        WinEventArgs winEventArgs = new WinEventArgs();
+        public event EventHandler<WinEventArgs> WinEvent;
 
+        public short[] Data { get; set; }
+        public int Size { get; set; }
+        public int Count { get; set; }
+       
         public Array2D()
         {
+            Size = 25;
+            Count = Size * Size;
             Data = new short[Count];
             for (int i = 0; i < 625; i++)
             {
@@ -37,47 +42,61 @@ namespace Tic_Tac_Toe_25x25
         public void EnermyClick(int index)
         {
             Data[index] = 1;
+            EnermyTurn();
         }
 
         public void PeopleClick(int index)
         {
             Data[index] = 0;
+            PeopleTurn();
         }
 
-        public bool IsPeopleWin()
+        public void PeopleTurn()
         {
             int sx = 0, winx = 0, winy = 0, winr1 = 0, winr2 = 0;
             for (int i = 0; i < Size; i++)
             {
-                for (int h = i; h < Count; h += Size+1)
+                for (int j = i; j < Count; j += Size+1)
                 {
                     if (i > 21) break;
-                    if (Data[h] == 0)
+                    if (Data[j] == 0)
                     {
                         winr1++;
-                        if (winr1 >= 5) return true;
+                        if (winr1 >= 5)
+                        {
+                            winEventArgs.IsPeoPleWin = true;
+                            WinEvent(this, winEventArgs);
+                        }
                     }
                     else winr1 = 0;
                 }
-                for (int g = i; g < Count; g += Size-1)
+                for (int j = i; j < Count; j += Size-1)
                 {
-                    if (g > 3)
+                    if (j > 3)
                     {
-                        if (Data[g] == 0)
+                        if (Data[j] == 0)
                         {
                             winr2++;
-                            if (winr2 >= 5) return true;
+                            if (winr2 >= 5)
+                            {
+                                winEventArgs.IsPeoPleWin = true;
+                                WinEvent(this, winEventArgs);
+                            }
                         }
                         else winr2 = 0;
                     }
                 }
 
-                for (int k = i; k < Count; k += Size)
+                for (int j = i; j < Count; j += Size)
                 {
-                    if (Data[k] == 0)
+                    if (Data[j] == 0)
                     {
                         winy++;
-                        if (winy >= 5) return true;
+                        if (winy >= 5)
+                        {
+                            winEventArgs.IsPeoPleWin = true;
+                            WinEvent(this, winEventArgs);
+                        }
                     }
                     else winy = 0;
                 }
@@ -87,16 +106,19 @@ namespace Tic_Tac_Toe_25x25
                     if (Data[sx] == 0)
                     {
                         winx++;
-                        if (winx >= 5) return true;
+                        if (winx >= 5)
+                        {
+                            winEventArgs.IsPeoPleWin = true;
+                            WinEvent(this, winEventArgs);
+                        }
                     }
                     else winx = 0;
                     sx++;
                 }
             }
-            return false;
         }
 
-        public bool IsEnermyWin()
+        public void EnermyTurn()
         {
             int sx = 0, winx = 0, winy = 0, winr1 = 0, winr2 = 0;
             for (int i = 0; i < Size; i++)
@@ -107,7 +129,11 @@ namespace Tic_Tac_Toe_25x25
                     if (Data[h] == 1)
                     {
                         winr1++;
-                        if (winr1 >= 5) return true;
+                        if (winr1 >= 5)
+                        {
+                            winEventArgs.IsEnermyWin = true;
+                            WinEvent(this, winEventArgs);
+                        }
                     }
                     else winr1 = 0;
                 }
@@ -118,7 +144,11 @@ namespace Tic_Tac_Toe_25x25
                         if (Data[g] == 1)
                         {
                             winr2++;
-                            if (winr2 >= 5) return true;
+                            if (winr2 >= 5)
+                            {
+                                winEventArgs.IsEnermyWin = true;
+                                WinEvent(this, winEventArgs);
+                            }
                         }
                         else winr2 = 0;
                     }
@@ -129,7 +159,11 @@ namespace Tic_Tac_Toe_25x25
                     if (Data[k] == 1)
                     {
                         winy++;
-                        if (winy >= 5) return true;
+                        if (winy >= 5)
+                        {
+                            winEventArgs.IsEnermyWin = true;
+                            WinEvent(this, winEventArgs);
+                        }
                     }
                     else winy = 0;
                 }
@@ -139,13 +173,16 @@ namespace Tic_Tac_Toe_25x25
                     if (Data[sx] == 1)
                     {
                         winx++;
-                        if (winx >= 5) return true;
+                        if (winx >= 5)
+                        {
+                            winEventArgs.IsEnermyWin = true;
+                            WinEvent(this, winEventArgs);
+                        }
                     }
                     else winx = 0;
                     sx++;
                 }
             }
-            return false;
         }
 
         public bool Is3Or4Used(out int FirstUsed3, out int LastUsed3)
