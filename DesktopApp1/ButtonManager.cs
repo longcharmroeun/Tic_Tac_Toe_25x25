@@ -17,7 +17,8 @@ namespace Tic_Tac_Toe_25x25
         public Button[] button;
         public ButtonManager(Form1 form)
         {
-            Array.WinEvent += ButtonManager_WinEvent;
+            Array.WinEvent += Array_WinEvent;
+            Array.EnermyEvent += Array_EnermyEvent;
             Random = new Random();
             int x = 0, y = 1, index = 0;
             button = new Button[Array.Count];
@@ -29,7 +30,7 @@ namespace Tic_Tac_Toe_25x25
                     this.button[index].Location = new System.Drawing.Point(x, y);
                     this.button[index].Size = new System.Drawing.Size(30, 30);
                     this.button[index].TabIndex = index;
-                    //this.button[index].Text = index.ToString();
+                    this.button[index].Text = index.ToString();
                     this.button[index].UseVisualStyleBackColor = true;
                     this.button[index].Click += ButtonManager_Click;
                     form.Controls.Add(button[index]);
@@ -41,42 +42,24 @@ namespace Tic_Tac_Toe_25x25
             }
         }
 
-        private void ButtonManager_Click(object sender, EventArgs e)
-        {
-            Button button = (Button)sender;
-            if (!Array.IsUsed(button.TabIndex))
-            {
-                button.Image = Image.FromFile(@"..\..\Image\circle.png");
-                Array.PeopleClick(button.TabIndex);
-                EnermyClick();
-            }
-        }
-
-        private void ButtonManager_WinEvent(object sender, WinEventArgs e)
-        {
-            if (e.IsPeoPleWin) MessageBox.Show("You Win");
-            else if (e.IsEnermyWin) MessageBox.Show("You Lose");
-        }
-
-        private void EnermyClick()
+        private void Array_EnermyEvent(object sender, EnermyEventArgs e)
         {
             while (true)
             {
                 int index = Random.Next(0, Array.Count);
                 if (!(Array.IsUsed(index)))
                 {
-                    if (Array.Is3Or4Used(out int First, out int Last))
+                    if (Array.IsEnermyNearLose(out int FirstIndex, out int LastIndex))
                     {
-                        if (!(Array.IsUsed(First)))
+                        if (!(Array.IsUsed(FirstIndex)))
                         {
-                            button[First].Image = Image.FromFile(@"..\..\Image\cross.png");
-                            Array.EnermyClick(First);
+                            button[FirstIndex].Image = Image.FromFile(@"..\..\Image\cross.png");
+                            Array.EnermyClick(FirstIndex);
                         }
-                        else if (!(Array.IsUsed(Last)))
+                        else if (!(Array.IsUsed(LastIndex)))
                         {
-                            button[Last].Image = Image.FromFile(@"..\..\Image\cross.png");
-                            Array.EnermyClick(Last);
-                            break;
+                            button[LastIndex].Image = Image.FromFile(@"..\..\Image\cross.png");
+                            Array.EnermyClick(LastIndex);
                         }
                     }
                     button[index].Image = Image.FromFile(@"..\..\Image\cross.png");
@@ -84,6 +67,22 @@ namespace Tic_Tac_Toe_25x25
                     break;
                 }
             }
+        }
+
+        private void ButtonManager_Click(object sender, EventArgs e)
+        {
+            Button button = (Button)sender;
+            if (!Array.IsUsed(button.TabIndex))
+            {
+                button.Image = Image.FromFile(@"..\..\Image\circle.png");
+                Array.PeopleClick(button.TabIndex);
+            }
+        }
+
+        private void Array_WinEvent(object sender, WinEventArgs e)
+        {
+            if (e.IsPeoPleWin) MessageBox.Show("You Win");
+            else if (e.IsEnermyWin) MessageBox.Show("You Lose");
         }
         
     }
