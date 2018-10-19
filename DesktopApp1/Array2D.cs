@@ -135,6 +135,26 @@ namespace Tic_Tac_Toe_25x25
                 {
                     if (Data[sx] == 0)
                     {
+                        if (sx >= i * Size&& sx <= (i * Size) + Size - 4)  
+                        {
+                            if (!IsFirstColumn(sx) && !IsLastColumn(sx + 3)) 
+                            {
+                                if (!IsUsed(sx + 1) && IsPeopleUse(sx + 2) && IsPeopleUse(sx + 3) && !IsEnermyUsed(sx - 1) && !IsEnermyUsed(sx + 4))  
+                                {
+                                    peopleNearWin.FirstIndex = sx + 1;
+                                    peopleNearWin.LastIndex = -1;
+                                    PeopleNearWinEvent(this, peopleNearWin);
+                                    return true;
+                                }
+                                else if (IsPeopleUse(sx + 1) && !IsUsed(sx + 2) && IsPeopleUse(sx + 3) && !IsEnermyUsed(sx - 1) && !IsEnermyUsed(sx + 4))
+                                {
+                                    peopleNearWin.FirstIndex = sx + 2;
+                                    peopleNearWin.LastIndex = -1;
+                                    PeopleNearWinEvent(this, peopleNearWin);
+                                    return true;
+                                }
+                            }
+                        }
                         use[winx] = sx;
                         winx++;
                         if (winx >= 3)
