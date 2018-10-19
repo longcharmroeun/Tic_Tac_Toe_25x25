@@ -10,6 +10,13 @@ namespace Tic_Tac_Toe_25x25
     {
         public bool IsPeoPleWin { get; set; }
         public bool IsEnermyWin { get; set; }
+        public int[] WinIndex { get; set; }
+        public WinEventArgs()
+        {
+            WinIndex = new int[5];
+            IsPeoPleWin = false;
+            IsEnermyWin = false;
+        }
     }
 
 }
