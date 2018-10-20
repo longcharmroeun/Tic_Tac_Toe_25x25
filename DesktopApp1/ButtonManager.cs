@@ -12,7 +12,7 @@ namespace Tic_Tac_Toe_25x25
 {
     class ButtonManager
     {
-        Array2D Array = new Array2D();
+        Array2D Array = new Array2D(25);
         private Random Random;
         public Button[] button;
         public ButtonManager(Form1 form)
