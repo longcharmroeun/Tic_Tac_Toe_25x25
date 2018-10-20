@@ -136,7 +136,226 @@ namespace Tic_Tac_Toe_25x25
             if(!EnermyNearLost()) EnermyEvent(this, enermyEventArgs); ;
         }
 
-        private bool EnermyNearLostForward()
+
+        private bool EnermyLostBackWard()
+        {
+            int index = 0, win = 0, count = Size - 1;
+            int[] Used = new int[Size];
+            for (int i = 4; i < Size; i++)
+            {
+                index = i;
+                for (int j = i; j <= i + i; j++)
+                {
+                    if (Data[index] == 0)
+                    {
+                        if (!IsUpRow(index) && !IsFirstColumn(index + (Size - 1) * 3) && !IsFirstColumn(index))
+                        {
+                            if (!IsUsed(index + (Size - 1) * 1) && IsPeopleUse(index + (Size - 1) * 2) && IsPeopleUse(index + (Size - 1) * 3) && !IsEnermyUsed(index - (Size - 1) * 1) && !IsEnermyUsed(index + (Size - 1) * 4))
+                            {
+                                peopleNearWin.FirstIndex = index + (Size - 1) * 1;
+                                peopleNearWin.LastIndex = -1;
+                                PeopleNearWinEvent(this, peopleNearWin);
+                                return true;
+                            }
+                            else if (IsPeopleUse(index + (Size - 1) * 1) && !IsUsed(index + (Size - 1) * 2) && IsPeopleUse(index + (Size - 1) * 3) && !IsEnermyUsed(index - (Size - 1) * 1) && !IsEnermyUsed(index + (Size - 1) * 4))
+                            {
+                                
+                                peopleNearWin.FirstIndex = index + (Size - 1) * 2;
+                                peopleNearWin.LastIndex = -1;
+                                PeopleNearWinEvent(this, peopleNearWin);
+                                return true;
+                            }
+                        }
+                        if (IsPeopleUse(index + (Size - 1) * 1) && !IsUsed(index + (Size - 1) * 2) && IsPeopleUse(index + (Size - 1) * 3) && IsPeopleUse(index + (Size - 1) * 4))
+                        {
+                            peopleNearWin.FirstIndex = index + (Size - 1) * 2;
+                            peopleNearWin.LastIndex = -1;
+                            PeopleNearWinEvent(this, peopleNearWin);
+                            return true;
+                        }
+                        Used[win] = index;
+                        win++;
+
+                        if (win >= 3)
+                        {
+                            if (!IsUpRow(Used[0]) && !IsFirstColumn(Used[2]))
+                            {
+                                peopleNearWin.LastIndex = Used[2] - 1 + Size;
+                                peopleNearWin.FirstIndex = Used[0] + 1 - Size;
+                                if (!IsUsed(peopleNearWin.LastIndex) && !IsUsed(peopleNearWin.FirstIndex) &&
+                                    !IsOutBound(peopleNearWin.FirstIndex) && !IsOutBound(peopleNearWin.LastIndex)
+                                    && !IsEnermyUsed(peopleNearWin.LastIndex) && !IsEnermyUsed(peopleNearWin.FirstIndex))
+                                {
+                                    PeopleNearWinEvent(this, peopleNearWin);
+                                    return true;
+                                }
+                            }
+
+                            if (win >= 4)
+                            {
+                                if (IsUpRow(Used[0]))
+                                {
+                                    peopleNearWin.LastIndex = Used[3] - 1 + Size;
+                                    peopleNearWin.FirstIndex = -1;
+                                    if (!IsEnermyUsed(peopleNearWin.LastIndex))
+                                    {
+                                        PeopleNearWinEvent(this, peopleNearWin);
+                                        return true;
+                                    }
+                                }
+                                else if (IsFirstColumn(Used[3]))
+                                {
+                                    peopleNearWin.LastIndex = -1;
+                                    peopleNearWin.FirstIndex = Used[0] + 1 - Size;
+                                    if (!IsEnermyUsed(peopleNearWin.FirstIndex))
+                                    {
+                                        PeopleNearWinEvent(this, peopleNearWin);
+                                        return true;
+                                    }
+                                }
+                                else
+                                {
+                                    peopleNearWin.LastIndex = Used[3] - 1 + Size;
+                                    peopleNearWin.FirstIndex = Used[0] + 1 - Size; ;
+                                    if (!IsEnermyUsed(peopleNearWin.FirstIndex) && IsEnermyUsed(peopleNearWin.LastIndex))
+                                    {
+                                        peopleNearWin.LastIndex = -1;
+                                        PeopleNearWinEvent(this, peopleNearWin);
+                                        return true;
+                                    }
+                                    else if (IsEnermyUsed(peopleNearWin.FirstIndex) && !IsEnermyUsed(peopleNearWin.LastIndex))
+                                    {
+                                        peopleNearWin.FirstIndex = -1;
+                                        PeopleNearWinEvent(this, peopleNearWin);
+                                        return true;
+                                    }
+                                    else if (!IsEnermyUsed(peopleNearWin.FirstIndex) && !IsEnermyUsed(peopleNearWin.LastIndex))
+                                    {
+                                        PeopleNearWinEvent(this, peopleNearWin);
+                                        return true;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    else win = 0;
+                    index += 24;
+                }
+                win = 0;
+            }
+            win = 0;
+            index = 0;
+        
+            for (int i = 24 + 25; i <= this.Count; i += Size)
+            {
+                index = i;
+                for (int j = i; j < i + count; j++)
+                {
+                    if (Data[index] == 0)
+                    {
+                        if (!IsLastColumn(index) && !IsDownRow(index + (Size - 1) * 3) && !IsDownRow(index))
+                        {
+                            if (!IsUsed(index + (Size - 1) * 1) && IsPeopleUse(index + (Size - 1) * 2) && IsPeopleUse(index + (Size - 1) * 3) && !IsEnermyUsed(index - (Size - 1) * 1) && !IsEnermyUsed(index + (Size - 1) * 4))
+                            {
+                                peopleNearWin.FirstIndex = index + (Size - 1) * 1;
+                                peopleNearWin.LastIndex = -1;
+                                PeopleNearWinEvent(this, peopleNearWin);
+                                return true;
+                            }
+                            else if (IsPeopleUse(index + (Size - 1) * 1) && !IsUsed(index + (Size - 1) * 2) && IsPeopleUse(index + (Size - 1) * 3) && !IsEnermyUsed(index - (Size - 1) * 1) && !IsEnermyUsed(index + (Size - 1) * 4))
+                            {
+
+                                peopleNearWin.FirstIndex = index + (Size - 1) * 2;
+                                peopleNearWin.LastIndex = -1;
+                                PeopleNearWinEvent(this, peopleNearWin);
+                                return true;
+                            }
+                        }
+                        if (IsPeopleUse(index + (Size - 1) * 1) && !IsUsed(index + (Size - 1) * 2) && IsPeopleUse(index + (Size - 1) * 3) && IsPeopleUse(index + (Size - 1) * 4))
+                        {
+                            peopleNearWin.FirstIndex = index + (Size - 1) * 2;
+                            peopleNearWin.LastIndex = -1;
+                            PeopleNearWinEvent(this, peopleNearWin);
+                            return true;
+                        }
+                        Used[win] = index;
+                        win++;
+
+                        if (win >= 3)
+                        {
+                            if (!IsLastColumn(Used[0]) && !IsDownRow(Used[2]))
+                            {
+                                peopleNearWin.LastIndex = Used[2] - 1 + Size;
+                                peopleNearWin.FirstIndex = Used[0] + 1 - Size;
+                                if (!IsUsed(peopleNearWin.LastIndex) && !IsUsed(peopleNearWin.FirstIndex) &&
+                                    !IsOutBound(peopleNearWin.FirstIndex) && !IsOutBound(peopleNearWin.LastIndex)
+                                    && !IsEnermyUsed(peopleNearWin.LastIndex) && !IsEnermyUsed(peopleNearWin.FirstIndex))
+                                {
+                                    PeopleNearWinEvent(this, peopleNearWin);
+                                    return true;
+                                }
+                            }
+
+                            if (win >= 4)
+                            {
+                                if (IsLastColumn(Used[0]))
+                                {
+                                    peopleNearWin.LastIndex = Used[3] - 1 + Size;
+                                    peopleNearWin.FirstIndex = -1;
+                                    if (!IsEnermyUsed(peopleNearWin.LastIndex))
+                                    {
+                                        PeopleNearWinEvent(this, peopleNearWin);
+                                        return true;
+                                    }
+                                }
+                                else if (IsDownRow(Used[3]))
+                                {
+                                    peopleNearWin.LastIndex = -1;
+                                    peopleNearWin.FirstIndex = Used[0] + 1 - Size;
+                                    if (!IsEnermyUsed(peopleNearWin.FirstIndex))
+                                    {
+                                        PeopleNearWinEvent(this, peopleNearWin);
+                                        return true;
+                                    }
+                                }
+                                else
+                                {
+                                    peopleNearWin.LastIndex = Used[3] - 1 + Size;
+                                    peopleNearWin.FirstIndex = Used[0] + 1 - Size; ;
+                                    if (!IsEnermyUsed(peopleNearWin.FirstIndex) && IsEnermyUsed(peopleNearWin.LastIndex))
+                                    {
+                                        peopleNearWin.LastIndex = -1;
+                                        PeopleNearWinEvent(this, peopleNearWin);
+                                        return true;
+                                    }
+                                    else if (IsEnermyUsed(peopleNearWin.FirstIndex) && !IsEnermyUsed(peopleNearWin.LastIndex))
+                                    {
+                                        peopleNearWin.FirstIndex = -1;
+                                        PeopleNearWinEvent(this, peopleNearWin);
+                                        return true;
+                                    }
+                                    else if (!IsEnermyUsed(peopleNearWin.FirstIndex) && !IsEnermyUsed(peopleNearWin.LastIndex))
+                                    {
+                                        PeopleNearWinEvent(this, peopleNearWin);
+                                        return true;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    else win = 0;
+                    index += 24;
+                }
+                win = 0;
+                index = 0;
+                if (count < 4) break;
+                count--;
+            }
+            return false;
+        }
+
+
+        private bool EnermyNearLostForWard()
         {
             int index = 0, win = 0, count = Size - 1;
             int[] Used = new int[Size];
@@ -148,22 +367,29 @@ namespace Tic_Tac_Toe_25x25
                 {
                     if (Data[index] == 0)
                     {
-                        if (!IsUpRow(index) && !IsLastColumn(index + 26 * 3) && !IsLastColumn(index)) 
+                        if (!IsUpRow(index) && !IsLastColumn(index + (Size + 1) * 3) && !IsLastColumn(index)) 
                         {
-                            if (!IsUsed(index + 26 * 1) && IsPeopleUse(index + 26 * 2) && IsPeopleUse(index + 26 * 3) && !IsEnermyUsed(index - 26 * 1) && !IsEnermyUsed(index + 26 * 4))
+                            if (!IsUsed(index + (Size + 1) * 1) && IsPeopleUse(index + (Size + 1) * 2) && IsPeopleUse(index + (Size + 1) * 3) && !IsEnermyUsed(index - (Size + 1) * 1) && !IsEnermyUsed(index + (Size + 1) * 4))
                             {
-                                peopleNearWin.FirstIndex = index + 26 * 1;
+                                peopleNearWin.FirstIndex = index + (Size + 1) * 1;
                                 peopleNearWin.LastIndex = -1;
                                 PeopleNearWinEvent(this, peopleNearWin);
                                 return true;
                             }
-                            else if (IsPeopleUse(index + 26 * 1) && !IsUsed(index + 26 * 2) && IsPeopleUse(index + 26 * 3) && !IsEnermyUsed(index - 26 * 1) && !IsEnermyUsed(index + 26 * 4))
+                            else if (IsPeopleUse(index + (Size + 1) * 1) && !IsUsed(index + (Size + 1) * 2) && IsPeopleUse(index + (Size + 1) * 3) && !IsEnermyUsed(index - (Size + 1) * 1) && !IsEnermyUsed(index + (Size + 1) * 4))
                             {
-                                peopleNearWin.FirstIndex = index + 26 * 2;
+                                peopleNearWin.FirstIndex = index + (Size + 1) * 2;
                                 peopleNearWin.LastIndex = -1;
                                 PeopleNearWinEvent(this, peopleNearWin);
                                 return true;
                             }
+                        }
+                        if (IsPeopleUse(index + (Size + 1) * 1) && !IsUsed(index + (Size + 1) * 2) && IsPeopleUse(index + (Size + 1) * 3) && IsPeopleUse(index + (Size + 1) * 4))
+                        {
+                            peopleNearWin.FirstIndex = index + (Size + 1) * 2;
+                            peopleNearWin.LastIndex = -1;
+                            PeopleNearWinEvent(this, peopleNearWin);
+                            return true;
                         }
 
                         Used[win] = index;
@@ -262,6 +488,14 @@ namespace Tic_Tac_Toe_25x25
                                 return true;
                             }
                         }
+                        if (IsPeopleUse(index + (Size + 1) * 1) && !IsUsed(index + (Size + 1) * 2) && IsPeopleUse(index + (Size + 1) * 3) && IsPeopleUse(index + (Size + 1) * 4))
+                        {
+                            peopleNearWin.FirstIndex = index + (Size + 1) * 2;
+                            peopleNearWin.LastIndex = -1;
+                            PeopleNearWinEvent(this, peopleNearWin);
+                            return true;
+                        }
+
                         Used[win] = index;
                         win++;
 
@@ -345,14 +579,18 @@ namespace Tic_Tac_Toe_25x25
             int[] UsedX = new int[Size];
             int[] UsedY = new int[Size];
 
-
-
-            //Forward
-            if (EnermyNearLostForward()) {
+            //BackWard
+            if (EnermyLostBackWard())
+            {
                 return true;
             }
 
-            //UP
+            //ForWard
+            if (EnermyNearLostForWard()) {
+                return true;
+            }
+
+            //Row
             for (int i = 0; i < Size; i++)
             {
                 for (int j = i; j < Count; j += Size)
@@ -361,22 +599,29 @@ namespace Tic_Tac_Toe_25x25
                     {
                         if (j <= Count - (Size * 4) + i)
                         {
-                            if (!IsUpRow(j) && !IsDownRow(j + 25 * 3))  
+                            if (!IsUpRow(j) && !IsDownRow(j + Size * 3))  
                             {
-                                if (!IsUsed(j + 25 * 1) && IsPeopleUse(j + 25 * 2) && IsPeopleUse(j + 25 * 3) && !IsEnermyUsed(j - 25 * 1) && !IsEnermyUsed(j + 25 * 4))
+                                if (!IsUsed(j + Size * 1) && IsPeopleUse(j + Size * 2) && IsPeopleUse(j + Size * 3) && !IsEnermyUsed(j - Size * 1) && !IsEnermyUsed(j + Size * 4))
                                 {
-                                    peopleNearWin.FirstIndex = j + 25 * 1;
+                                    peopleNearWin.FirstIndex = j + Size * 1;
                                     peopleNearWin.LastIndex = -1;
                                     PeopleNearWinEvent(this, peopleNearWin);
                                     return true;
                                 }
-                                else if (IsPeopleUse(j + 25 * 1) && !IsUsed(j + 25 * 2) && IsPeopleUse(j + 25 * 3) && !IsEnermyUsed(j - 25 * 1) && !IsEnermyUsed(j + 25 * 4))
+                                else if (IsPeopleUse(j + Size * 1) && !IsUsed(j + Size * 2) && IsPeopleUse(j + Size * 3) && !IsEnermyUsed(j - Size * 1) && !IsEnermyUsed(j + Size * 4))
                                 {
-                                    peopleNearWin.FirstIndex = j + 25 * 2;
+                                    peopleNearWin.FirstIndex = j + Size * 2;
                                     peopleNearWin.LastIndex = -1;
                                     PeopleNearWinEvent(this, peopleNearWin);
                                     return true;
                                 }
+                            }
+                            if (IsPeopleUse(j + Size * 1) && !IsUsed(j + Size * 2) && IsPeopleUse(j + Size * 3) && IsPeopleUse(j + Size * 4))
+                            {
+                                peopleNearWin.FirstIndex = j + Size * 2;
+                                peopleNearWin.LastIndex = -1;
+                                PeopleNearWinEvent(this, peopleNearWin);
+                                return true;
                             }
                         }
 
@@ -448,7 +693,7 @@ namespace Tic_Tac_Toe_25x25
                 winy = 0;
                 
 
-                //Down
+                //Column
                 for (int j = 0; j < Size; j++)
                 {
                     if (Data[sx] == 0)
@@ -473,6 +718,14 @@ namespace Tic_Tac_Toe_25x25
                                 }
                             }
                         }
+                        if (IsPeopleUse(sx + 1) && !IsUsed(sx + 2) && IsPeopleUse(sx + 3) && IsPeopleUse(sx + 4))
+                        {
+                            peopleNearWin.FirstIndex = sx + 2;
+                            peopleNearWin.LastIndex = -1;
+                            PeopleNearWinEvent(this, peopleNearWin);
+                            return true;
+                        }
+
                         UsedX[winx] = sx;
                         winx++;
                         if (winx >= 3)
