@@ -55,6 +55,7 @@ namespace Tic_Tac_Toe_25x25
                 button[e.LastIndex].Image = Image.FromFile(@"..\..\Image\cross.png");
                 Array.EnermyClick(e.LastIndex);
             }
+           // MessageBox.Show("");
         }
 
         private void Array_EnermyEvent(object sender, EnermyEventArgs e)
