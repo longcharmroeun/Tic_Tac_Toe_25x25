@@ -90,7 +90,13 @@ namespace Tic_Tac_Toe_25x25
                     button[e.WinIndex[i]].BackColor = Color.Green;
                 }
             }
-            else if (e.IsEnermyWin) MessageBox.Show("You Lose");
+            else if (e.IsEnermyWin)
+            {
+                for (int i = 0; i < e.WinIndex.Length; i++)
+                {
+                    button[e.WinIndex[i]].BackColor = Color.Green;
+                }
+            }
         }
         
     }

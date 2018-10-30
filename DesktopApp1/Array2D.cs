@@ -48,6 +48,203 @@ namespace Tic_Tac_Toe_25x25
             }
         }
 
+        //bug here
+        protected bool Win2RoadForWard(int Size, int code = 2)
+        {
+            if (code == 0)
+            {
+                //FirstIndex
+                //Rigth
+                if (!IsEnermyUsed(peopleNearWin.FirstIndex - (Size)) &&
+                    IsPeopleUse(peopleNearWin.FirstIndex + (Size)) &&
+                    IsPeopleUse(peopleNearWin.FirstIndex + (Size) * 2) &&
+                    !IsEnermyUsed(peopleNearWin.FirstIndex + (Size) * 3) &&
+                    !IsLastColumn(peopleNearWin.FirstIndex + (Size) * 2) &&
+                    !IsDownRow(peopleNearWin.FirstIndex + (Size) * 2) &&
+                    !IsUpRow(peopleNearWin.FirstIndex))
+                {
+                    peopleNearWin.LastIndex = -1;
+                    PeopleNearWinEvent(this, peopleNearWin);
+                    return true;
+                }
+                //Left
+                else if (!IsEnermyUsed(peopleNearWin.FirstIndex + (Size)) &&
+                    IsPeopleUse(peopleNearWin.FirstIndex - (Size)) &&
+                    IsPeopleUse(peopleNearWin.FirstIndex - (Size) * 2) &&
+                    !IsEnermyUsed(peopleNearWin.FirstIndex - (Size) * 3) &&
+                    !IsUpRow(peopleNearWin.FirstIndex - (Size) * 2) &&
+                    !IsFirstColumn(peopleNearWin.FirstIndex - (Size) * 2) &&
+                    !IsLastColumn(peopleNearWin.FirstIndex))
+                {
+                    peopleNearWin.LastIndex = -1;
+                    PeopleNearWinEvent(this, peopleNearWin);
+                    return true;
+                }
+                //Both
+                else if (IsPeopleUse(peopleNearWin.FirstIndex - (Size)) &&
+                    IsPeopleUse(peopleNearWin.FirstIndex + (Size)) &&
+                    !IsEnermyUsed(peopleNearWin.FirstIndex - (Size) * 2) &&
+                    !IsEnermyUsed(peopleNearWin.FirstIndex + (Size) * 2) &&
+                    !IsFirstColumn(peopleNearWin.FirstIndex - (Size)) &&
+                    !IsUpRow(peopleNearWin.FirstIndex - (Size)) &&
+                    !IsDownRow(peopleNearWin.FirstIndex + (Size)) &&
+                    !IsLastColumn(peopleNearWin.FirstIndex + (Size)))
+                {
+                    peopleNearWin.LastIndex = -1;
+                    PeopleNearWinEvent(this, peopleNearWin);
+                    return true;
+                }
+                else return false;
+            }
+
+            else if (code == 1)
+            {
+                //LastIndex
+                //Right
+                if (!IsEnermyUsed(peopleNearWin.LastIndex - (Size)) &&
+                        IsPeopleUse(peopleNearWin.LastIndex + (Size)) &&
+                        IsPeopleUse(peopleNearWin.LastIndex + (Size) * 2) &&
+                        !IsEnermyUsed(peopleNearWin.LastIndex + (Size) * 3) &&
+                        !IsLastColumn(peopleNearWin.LastIndex + (Size) * 2) &&
+                        !IsDownRow(peopleNearWin.LastIndex + (Size) * 2) &&
+                        !IsFirstColumn(peopleNearWin.LastIndex))
+                {
+                    peopleNearWin.FirstIndex = -1;
+                    PeopleNearWinEvent(this, peopleNearWin);
+                    return true;
+                }
+                //Left
+                else if (!IsEnermyUsed(peopleNearWin.LastIndex + (Size)) &&
+                    IsPeopleUse(peopleNearWin.LastIndex - (Size)) &&
+                    IsPeopleUse(peopleNearWin.LastIndex - (Size) * 2) &&
+                    !IsEnermyUsed(peopleNearWin.LastIndex - (Size) * 3) &&
+                    !IsFirstColumn(peopleNearWin.LastIndex - (Size) * 2) &&
+                    !IsUpRow(peopleNearWin.LastIndex - (Size) * 2) &&
+                    !IsDownRow(peopleNearWin.LastIndex))
+                {
+                    peopleNearWin.FirstIndex = -1;
+                    PeopleNearWinEvent(this, peopleNearWin);
+                    return true;
+                }
+                //Both
+                else if (IsPeopleUse(peopleNearWin.LastIndex - (Size)) &&
+                    IsPeopleUse(peopleNearWin.LastIndex + (Size)) &&
+                    !IsEnermyUsed(peopleNearWin.LastIndex - (Size) * 2) &&
+                    !IsEnermyUsed(peopleNearWin.LastIndex + (Size) * 2) &&
+                    !IsFirstColumn(peopleNearWin.LastIndex - (Size)) &&
+                    !IsLastColumn(peopleNearWin.LastIndex + (Size)) &&
+                    !IsDownRow(peopleNearWin.LastIndex + (Size)) &&
+                    !IsUpRow(peopleNearWin.LastIndex - (Size)))
+                {
+                    peopleNearWin.FirstIndex = -1;
+                    PeopleNearWinEvent(this, peopleNearWin);
+                    return true;
+                }
+                else return false;
+            }
+
+
+            else if (code == 2)
+            {
+                if (!IsUsed(peopleNearWin.FirstIndex) && !IsUsed(peopleNearWin.LastIndex))
+                {
+                    //FirstIndex
+                    //Rigth
+                    if (!IsEnermyUsed(peopleNearWin.FirstIndex - (Size)) &&
+                        IsPeopleUse(peopleNearWin.FirstIndex + (Size)) &&
+                        IsPeopleUse(peopleNearWin.FirstIndex + (Size) * 2) &&
+                        !IsEnermyUsed(peopleNearWin.FirstIndex + (Size) * 3) &&
+                        !IsLastColumn(peopleNearWin.FirstIndex + (Size) * 2) &&
+                        !IsDownRow(peopleNearWin.FirstIndex + (Size) * 2) &&
+                        !IsUpRow(peopleNearWin.FirstIndex))
+                    {
+                        peopleNearWin.LastIndex = -1;
+                        PeopleNearWinEvent(this, peopleNearWin);
+                        return true;
+                    }
+                    //Left
+                    else if (!IsEnermyUsed(peopleNearWin.FirstIndex + (Size)) &&
+                        IsPeopleUse(peopleNearWin.FirstIndex - (Size)) &&
+                        IsPeopleUse(peopleNearWin.FirstIndex - (Size) * 2) &&
+                        !IsEnermyUsed(peopleNearWin.FirstIndex - (Size) * 3) &&
+                        !IsUpRow(peopleNearWin.FirstIndex - (Size) * 2) &&
+                        !IsFirstColumn(peopleNearWin.FirstIndex - (Size) * 2) &&
+                        !IsLastColumn(peopleNearWin.FirstIndex))
+                    {
+                        peopleNearWin.LastIndex = -1;
+                        PeopleNearWinEvent(this, peopleNearWin);
+                        return true;
+                    }
+                    //Both
+                    else if (IsPeopleUse(peopleNearWin.FirstIndex - (Size)) &&
+                        IsPeopleUse(peopleNearWin.FirstIndex + (Size)) &&
+                        !IsEnermyUsed(peopleNearWin.FirstIndex - (Size) * 2) &&
+                        !IsEnermyUsed(peopleNearWin.FirstIndex + (Size) * 2) &&
+                        !IsFirstColumn(peopleNearWin.FirstIndex - (Size)) &&
+                        !IsUpRow(peopleNearWin.FirstIndex - (Size)) &&
+                        !IsDownRow(peopleNearWin.FirstIndex + (Size)) &&
+                        !IsLastColumn(peopleNearWin.FirstIndex + (Size)))
+                    {
+                        peopleNearWin.LastIndex = -1;
+                        PeopleNearWinEvent(this, peopleNearWin);
+                        return true;
+                    }
+                    //LastIndex
+                    //Right
+                    else if (!IsEnermyUsed(peopleNearWin.LastIndex - (Size)) &&
+                        IsPeopleUse(peopleNearWin.LastIndex + (Size)) &&
+                        IsPeopleUse(peopleNearWin.LastIndex + (Size) * 2) &&
+                        !IsEnermyUsed(peopleNearWin.LastIndex + (Size) * 3) &&
+                        !IsLastColumn(peopleNearWin.LastIndex + (Size) * 2) &&
+                        !IsDownRow(peopleNearWin.LastIndex + (Size) * 2) &&
+                        !IsFirstColumn(peopleNearWin.LastIndex))
+                    {
+                        peopleNearWin.FirstIndex = -1;
+                        PeopleNearWinEvent(this, peopleNearWin);
+                        return true;
+                    }
+                    //Left
+                    else if (!IsEnermyUsed(peopleNearWin.LastIndex + (Size)) &&
+                        IsPeopleUse(peopleNearWin.LastIndex - (Size)) &&
+                        IsPeopleUse(peopleNearWin.LastIndex - (Size) * 2) &&
+                        !IsEnermyUsed(peopleNearWin.LastIndex - (Size) * 3) &&
+                        !IsFirstColumn(peopleNearWin.LastIndex - (Size) * 2) &&
+                        !IsUpRow(peopleNearWin.LastIndex - (Size) * 2) &&
+                        !IsDownRow(peopleNearWin.LastIndex))
+                    {
+                        peopleNearWin.FirstIndex = -1;
+                        PeopleNearWinEvent(this, peopleNearWin);
+                        return true;
+                    }
+                    //Both
+                    else if (IsPeopleUse(peopleNearWin.LastIndex - (Size)) &&
+                        IsPeopleUse(peopleNearWin.LastIndex + (Size)) &&
+                        !IsEnermyUsed(peopleNearWin.LastIndex - (Size) * 2) &&
+                        !IsEnermyUsed(peopleNearWin.LastIndex + (Size) * 2) &&
+                        !IsFirstColumn(peopleNearWin.LastIndex - (Size)) &&
+                        !IsLastColumn(peopleNearWin.LastIndex + (Size)) &&
+                        !IsDownRow(peopleNearWin.LastIndex + (Size)) &&
+                        !IsUpRow(peopleNearWin.LastIndex - (Size)))
+                    {
+                        peopleNearWin.FirstIndex = -1;
+                        PeopleNearWinEvent(this, peopleNearWin);
+                        return true;
+                    }
+                    else return false;
+                }
+                else return false;
+            }
+
+            else if (!(code >= 0 && code <= 2))
+            {
+                throw new System.ArgumentException("(0) For FirstIndex" +
+                    "(1) For LastIndex" +
+                    "(2) For Bot LastIndex And FirstIndex");
+            }
+
+            else return false;
+        }
+
         protected bool Win2RoadBackWard(int Size, int code = 2)
         {
             if (code == 0)
@@ -197,7 +394,7 @@ namespace Tic_Tac_Toe_25x25
                         !IsLastColumn(peopleNearWin.LastIndex + (Size) * 2) &&
                         !IsDownRow(peopleNearWin.LastIndex + (Size) * 2) &&
                         !IsFirstColumn(peopleNearWin.LastIndex))
-                    {                        
+                    {
                         peopleNearWin.FirstIndex = -1;
                         PeopleNearWinEvent(this, peopleNearWin);
                         return true;
@@ -1030,7 +1227,7 @@ namespace Tic_Tac_Toe_25x25
 
 
                                     //2Road Win Column and BackWard
-                                    else if (Win2RoadRow(Size + 1)) return true;
+                                    else if (Win2RoadBackWard(Size + 1)) return true;
 
                                     else if (Win2RoadBackWard(Size)) return true;
                                 }
@@ -1259,6 +1456,155 @@ namespace Tic_Tac_Toe_25x25
 
                         Used[win] = index;
                         win++;
+
+                        if (win == 2)
+                        {
+                            if (!IsUpRow(Used[0]) && !IsFirstColumn(Used[1]))
+                            {
+                                peopleNearWin.LastIndex = Used[1] + (Size + 1);
+                                peopleNearWin.FirstIndex = Used[0] - (Size + 1);
+
+                                //2Road Win Row and Column
+                                if (Win2RoadForWard(1)) return true;
+
+                                //2Road Win Column and ForWard
+                                //if (Win2Road(Size + 1)) return true;
+
+
+                                //2Road Win Column and BackWard
+                                else if (Win2RoadForWard(Size - 1)) return true;
+
+                                else if (Win2RoadForWard(Size)) return true;
+
+                                else
+                                {
+                                    peopleNearWin.FirstIndex = Used[0] - (Size + 1) * 2;
+                                    peopleNearWin.LastIndex = Used[1] + (Size + 1) * 2;
+
+                                    //2Road Win Row and Column
+                                    if (Win2RoadForWard(1)) return true;
+
+                                    //2Road Win Column and ForWard
+                                    //else if (Win2RoadRow(Size + 1)) return true;
+
+
+                                    //2Road Win Column and BackWard
+                                    else if (Win2RoadForWard(Size - 1)) return true;
+
+                                    else if (Win2RoadForWard(Size)) return true;
+                                }
+                            }
+                        }
+
+                        else if (win == 3 && !IsFirstColumn(Used[0]) && !IsLastColumn(Used[0]))
+                        {
+                            peopleNearWin.FirstIndex = Used[0] - (Size + 1);
+                            peopleNearWin.LastIndex = Used[2] + (Size + 1);
+
+                            if (IsDownRow(Used[2]) && !IsUsed(peopleNearWin.FirstIndex))
+                            {
+                                //2Road Win Row and Column
+                                if (Win2RoadForWard(1, 0)) return true;
+
+                                //2Road Win Column and ForWard
+                                else if (Win2RoadForWard(Size - 1, 0)) return true;
+
+                                //2Road Win Column and BackWard
+                                else if (Win2RoadForWard(Size, 0)) return true;
+                            }
+                            if (IsUpRow(Used[0]) && !IsUsed(peopleNearWin.LastIndex))
+                            {
+                                //2Road Win Row and Column
+                                if (Win2RoadForWard(1, 1)) return true;
+
+                                //2Road Win Column and ForWard
+                                else if (Win2RoadForWard(Size - 1, 1)) return true;
+
+                                //2Road Win Column and BackWard
+                                else if (Win2RoadForWard(Size, 1)) return true;
+                            }
+                            if (!IsUsed(peopleNearWin.FirstIndex))
+                            {
+                                //2Road Win Row and Column
+                                if (Win2RoadForWard(1, 0)) return true;
+
+                                //2Road Win Column and ForWard
+                                else if (Win2RoadForWard(Size - 1, 0)) return true;
+
+                                //2Road Win Column and BackWard
+                                else if (Win2RoadForWard(Size, 0)) return true;
+
+                                else
+                                {
+                                    peopleNearWin.FirstIndex = Used[0] - (Size + 1) * 2;
+                                    peopleNearWin.LastIndex = Used[2] + (Size + 1) * 2;
+
+                                    if (IsDownRow(Used[2]) && !IsUsed(peopleNearWin.FirstIndex))
+                                    {
+                                        //2Road Win Row and Column
+                                        if (Win2RoadForWard(1, 0)) return true;
+
+                                        //2Road Win Column and ForWard
+                                        else if (Win2RoadForWard(Size - 1, 0)) return true;
+
+                                        //2Road Win Column and BackWard
+                                        else if (Win2RoadForWard(Size, 0)) return true;
+                                    }
+                                    if (!IsUsed(peopleNearWin.FirstIndex))
+                                    {
+                                        //2Road Win Row and Column
+                                        if (Win2RoadForWard(1, 0)) return true;
+
+                                        //2Road Win Column and ForWard
+                                        else if (Win2RoadForWard(Size - 1, 0)) return true;
+
+                                        //2Road Win Column and BackWard
+                                        else if (Win2RoadForWard(Size, 0)) return true;
+                                    }
+                                }
+                            }
+                            if (!IsUsed(peopleNearWin.LastIndex))
+                            {
+                                //2Road Win Row and Column
+                                if (Win2RoadForWard(1, 1)) return true;
+
+                                //2Road Win Column and ForWard
+                                else if (Win2RoadForWard(Size - 1, 1)) return true;
+
+                                //2Road Win Column and BackWard
+                                if (Win2RoadForWard(Size, 1)) return true;
+
+                                else
+                                {
+                                    peopleNearWin.FirstIndex = Used[0] - (Size + 1) * 2;
+                                    peopleNearWin.LastIndex = Used[2] + (Size + 1) * 2;
+
+                                    if (IsUpRow(Used[0]) && !IsUsed(peopleNearWin.LastIndex))
+                                    {
+                                        //2Road Win Row and Column
+                                        if (Win2RoadForWard(1, 1)) return true;
+
+                                        //2Road Win Column and ForWard
+                                        else if (Win2RoadForWard(Size - 1, 1)) return true;
+
+                                        //2Road Win Column and BackWard
+                                        else if (Win2RoadForWard(Size, 1)) return true;
+                                    }
+                                    if (!IsUsed(peopleNearWin.LastIndex))
+                                    {
+                                        //2Road Win Row and Column
+                                        if (Win2RoadForWard(1, 1)) return true;
+
+                                        //2Road Win Column and ForWard
+                                        else if (Win2RoadForWard(Size - 1, 1)) return true;
+
+                                        //2Road Win Column and BackWard
+                                        else if (Win2RoadForWard(Size, 1)) return true;
+                                    }
+                                }
+                            }
+                        }
+
                         if (win >= 3)
                         {
                             if (!IsUpRow(Used[0]) && !IsLastColumn(Used[2]))
@@ -1364,6 +1710,153 @@ namespace Tic_Tac_Toe_25x25
                         Used[win] = index;
                         win++;
 
+                        if (win == 2)
+                        {
+                            if (!IsUpRow(Used[0]) && !IsFirstColumn(Used[1]))
+                            {
+                                peopleNearWin.LastIndex = Used[1] + (Size + 1);
+                                peopleNearWin.FirstIndex = Used[0] - (Size + 1);
+
+                                //2Road Win Row and Column
+                                if (Win2RoadForWard(1)) return true;
+
+                                //2Road Win Column and ForWard
+                                //if (Win2Road(Size + 1)) return true;
+
+
+                                //2Road Win Column and BackWard
+                                else if (Win2RoadForWard(Size - 1)) return true;
+
+                                else if (Win2RoadForWard(Size)) return true;
+
+                                else
+                                {
+                                    peopleNearWin.FirstIndex = Used[0] - (Size + 1) * 2;
+                                    peopleNearWin.LastIndex = Used[1] + (Size + 1) * 2;
+
+                                    //2Road Win Row and Column
+                                    if (Win2RoadForWard(1)) return true;
+
+                                    //2Road Win Column and ForWard
+                                    //else if (Win2RoadRow(Size + 1)) return true;
+
+
+                                    //2Road Win Column and BackWard
+                                    else if (Win2RoadForWard(Size - 1)) return true;
+
+                                    else if (Win2RoadForWard(Size)) return true;
+                                }
+                            }
+                        }
+
+                        else if (win == 3 && !IsFirstColumn(Used[0]) && !IsLastColumn(Used[0]))
+                        {
+                            peopleNearWin.FirstIndex = Used[0] - (Size + 1);
+                            peopleNearWin.LastIndex = Used[2] + (Size + 1);
+
+                            if (IsDownRow(Used[2]) && !IsUsed(peopleNearWin.FirstIndex))
+                            {
+                                //2Road Win Row and Column
+                                if (Win2RoadForWard(1, 0)) return true;
+
+                                //2Road Win Column and ForWard
+                                else if (Win2RoadForWard(Size - 1, 0)) return true;
+
+                                //2Road Win Column and BackWard
+                                else if (Win2RoadForWard(Size, 0)) return true;
+                            }
+                            if (IsUpRow(Used[0]) && !IsUsed(peopleNearWin.LastIndex))
+                            {
+                                //2Road Win Row and Column
+                                if (Win2RoadForWard(1, 1)) return true;
+
+                                //2Road Win Column and ForWard
+                                else if (Win2RoadForWard(Size - 1, 1)) return true;
+
+                                //2Road Win Column and BackWard
+                                else if (Win2RoadForWard(Size, 1)) return true;
+                            }
+                            if (!IsUsed(peopleNearWin.FirstIndex))
+                            {
+                                //2Road Win Row and Column
+                                if (Win2RoadForWard(1, 0)) return true;
+
+                                //2Road Win Column and ForWard
+                                else if (Win2RoadForWard(Size - 1, 0)) return true;
+
+                                //2Road Win Column and BackWard
+                                else if (Win2RoadForWard(Size, 0)) return true;
+
+                                else
+                                {
+                                    peopleNearWin.FirstIndex = Used[0] - (Size + 1) * 2;
+                                    peopleNearWin.LastIndex = Used[2] + (Size + 1) * 2;
+
+                                    if (IsDownRow(Used[2]) && !IsUsed(peopleNearWin.FirstIndex))
+                                    {
+                                        //2Road Win Row and Column
+                                        if (Win2RoadForWard(1, 0)) return true;
+
+                                        //2Road Win Column and ForWard
+                                        else if (Win2RoadForWard(Size - 1, 0)) return true;
+
+                                        //2Road Win Column and BackWard
+                                        else if (Win2RoadForWard(Size, 0)) return true;
+                                    }
+                                    if (!IsUsed(peopleNearWin.FirstIndex))
+                                    {
+                                        //2Road Win Row and Column
+                                        if (Win2RoadForWard(1, 0)) return true;
+
+                                        //2Road Win Column and ForWard
+                                        else if (Win2RoadForWard(Size - 1, 0)) return true;
+
+                                        //2Road Win Column and BackWard
+                                        else if (Win2RoadForWard(Size, 0)) return true;
+                                    }
+                                }
+                            }
+                            if (!IsUsed(peopleNearWin.LastIndex))
+                            {
+                                //2Road Win Row and Column
+                                if (Win2RoadForWard(1, 1)) return true;
+
+                                //2Road Win Column and ForWard
+                                else if (Win2RoadForWard(Size - 1, 1)) return true;
+
+                                //2Road Win Column and BackWard
+                                if (Win2RoadForWard(Size, 1)) return true;
+
+                                else
+                                {
+                                    peopleNearWin.FirstIndex = Used[0] - (Size + 1) * 2;
+                                    peopleNearWin.LastIndex = Used[2] + (Size + 1) * 2;
+
+                                    if (IsUpRow(Used[0]) && !IsUsed(peopleNearWin.LastIndex))
+                                    {
+                                        //2Road Win Row and Column
+                                        if (Win2RoadForWard(1, 1)) return true;
+
+                                        //2Road Win Column and ForWard
+                                        else if (Win2RoadForWard(Size - 1, 1)) return true;
+
+                                        //2Road Win Column and BackWard
+                                        else if (Win2RoadForWard(Size, 1)) return true;
+                                    }
+                                    if (!IsUsed(peopleNearWin.LastIndex))
+                                    {
+                                        //2Road Win Row and Column
+                                        if (Win2RoadForWard(1, 1)) return true;
+
+                                        //2Road Win Column and ForWard
+                                        else if (Win2RoadForWard(Size - 1, 1)) return true;
+
+                                        //2Road Win Column and BackWard
+                                        else if (Win2RoadForWard(Size, 1)) return true;
+                                    }
+                                }
+                            }
+                        }
 
                         if (win >= 3)
                         {
@@ -2126,6 +2619,10 @@ namespace Tic_Tac_Toe_25x25
                 {
                     if (Data[index] == 1)
                     {
+                        if (win >= 0 && win < winEventArgs.WinIndex.Length)
+                        {
+                            winEventArgs.WinIndex[win] = index;
+                        }
                         win++;
                         if (win >= 5)
                         {
@@ -2147,6 +2644,10 @@ namespace Tic_Tac_Toe_25x25
                 {
                     if (Data[index] == 1)
                     {
+                        if (win >= 0 && win < winEventArgs.WinIndex.Length)
+                        {
+                            winEventArgs.WinIndex[win] = index;
+                        }
                         win++;
                         if (win >= 5)
                         {
@@ -2174,6 +2675,10 @@ namespace Tic_Tac_Toe_25x25
                 {
                     if (Data[index] == 1)
                     {
+                        if (win >= 0 && win < winEventArgs.WinIndex.Length)
+                        {
+                            winEventArgs.WinIndex[win] = index;
+                        }
                         win++;
                         if (win >= 5)
                         {
@@ -2196,6 +2701,10 @@ namespace Tic_Tac_Toe_25x25
                 {
                     if (Data[index] == 1)
                     {
+                        if (win >= 0 && win < winEventArgs.WinIndex.Length)
+                        {
+                            winEventArgs.WinIndex[win] = index;
+                        }
                         win++;
                         if (win >= 5)
                         {
@@ -2223,6 +2732,10 @@ namespace Tic_Tac_Toe_25x25
                 {
                     if (Data[j] == 1)
                     {
+                        if (winy >= 0 && winy < winEventArgs.WinIndex.Length)
+                        {
+                            winEventArgs.WinIndex[winy] = j;
+                        }
                         winy++;
                         if (winy >= 5)
                         {
@@ -2238,6 +2751,10 @@ namespace Tic_Tac_Toe_25x25
                 {
                     if (Data[index] == 1)
                     {
+                        if (winx >= 0 && winx < winEventArgs.WinIndex.Length)
+                        {
+                            winEventArgs.WinIndex[winx] = index;
+                        }
                         winx++;
                         if (winx >= 5)
                         {
@@ -2251,183 +2768,6 @@ namespace Tic_Tac_Toe_25x25
                 winx = 0;
             }
         }
-
-        /*
-        public bool IsEnermyNearLose(out int FirstUsed3, out int LastUsed3)
-        {
-            int sx = 0;
-            int use3x = 0, use3y = 0, use3r2 = 0, use3r1 = 0;
-            int[] used3 = new int[9];
-            int index = 0;
-            bool Near = false;
-
-
-            for (int i = 0; i < Size; i++)
-            {
-                
-                for (int j = i; j < Count; j += Size + 1)
-                {
-                    if (Data[j] == 1) { Near = true; }
-                    else if (Data[j] == -1) Near = false;
-                    if (Data[j] == 0)
-                    {
-                        used3[index] = j;
-                        index++;
-                        use3r1++;
-                        if (use3r1 >= 3)
-                        {
-                            if (!Near)
-                            {
-                                FirstUsed3 = used3[0] - Size - 1;
-                                LastUsed3 = used3[2] + 1 + Size;
-                                if (!IsUsed(LastUsed3)) { return true; }
-                                else if (!IsUsed(FirstUsed3)) { return true; }
-                                else index = 0;
-                            }
-                        }
-                        if (use3r1 >= 4)
-                        {
-                            FirstUsed3 = used3[0] - Size - 1;
-                            LastUsed3 = used3[3] + 1 + Size;
-                            if (!IsUsed(LastUsed3)) { return true; }
-                            else if (!IsUsed(FirstUsed3)) { return true; }
-                            else index = 0;
-                        }
-
-                    }
-                    else
-                    {
-                        index = 0;
-                        use3r1 = 0;
-                    }
-                }
-
-
-                for (int j = i; j < Count; j += Size - 1)
-                {
-                    if (Data[j] == 1) { Near = true; }
-                    else if (Data[j] == -1) Near = false;
-                    if (Data[j] == 0)
-                    {
-                        used3[index] = j;
-                        index++;
-                        use3r2++;
-                        if (use3r2 >= 3)
-                        {
-                            if (!Near)
-                            {
-                                FirstUsed3 = used3[0] + 1 - Size;
-                                LastUsed3 = used3[2] - 1 + Size;
-                                if (!IsUsed(LastUsed3)) { return true; }
-                                else if (!IsUsed(FirstUsed3)) { return true; }
-                                else index = 0;
-                            }
-                        }
-                        if (use3r2 >= 4)
-                        {
-                            FirstUsed3 = used3[0] + 1 - Size;
-                            LastUsed3 = used3[3] - 1 + Size;
-                            if (!IsUsed(LastUsed3)) { return true; }
-                            else if (!IsUsed(FirstUsed3)) { return true; }
-                            else index = 0;
-                        }
-                    }
-                    else
-                    {
-                        index = 0;
-                        use3r2 = 0;
-                    }
-                }
-
-
-                for (int j = i; j < Count; j += Size)
-                {
-                    if (Data[j] == 1) { Near = true; }
-                    else if (Data[j] == -1) Near = false;
-
-                    if (Data[j] == 0)
-                    {
-                        used3[index] = j;
-                        index++;
-                        use3y++;
-                        if (use3y >= 3)
-                        {
-                            if (!Near)
-                            {
-                                FirstUsed3 = used3[0] - Size;
-                                LastUsed3 = used3[2] + Size;
-                                if (!IsUsed(LastUsed3)) { return true; }
-                                else if (!IsUsed(FirstUsed3)) { return true; }
-                                else index = 0;
-                            }
-                        }
-                        if (use3y >= 4)
-                        {
-                            FirstUsed3 = used3[0] - Size;
-                            LastUsed3 = used3[3] + Size;
-                            if (!IsUsed(LastUsed3)) { return true; }
-                            else if (!IsUsed(FirstUsed3)) { return true; }
-                            else index = 0;
-                        }
-                    }
-                    else
-                    {
-                        index = 0;
-                        use3y = 0;
-                    }
-                }
-                
-
-                for (int j = 0; j < Size; j++)
-                {
-                    if (Data[sx] == 1) { Near = true; }
-                    else if (Data[sx] == -1) Near = false;
-
-                    if (Data[sx] == 0)
-                    {
-                        used3[index] = sx;
-                        index++;
-                        use3x++;
-                        if (use3x >= 3)
-                        {
-                            if (!Near)
-                            {
-                                LastUsed3 = used3[2] + 1;
-                                FirstUsed3 = used3[0] - 1;
-                                if (!IsUsed(LastUsed3) && !IsUsed(FirstUsed3))
-                                {
-                                    return true;
-                                }
-                                else index = 0;
-                            }                            
-                        }
-                        if (use3x >= 4)
-                        {
-                            LastUsed3 = used3[3] + 1;
-                            FirstUsed3 = used3[0] - 1;
-                            if (!IsUsed(LastUsed3))
-                            {
-                                return true;
-                            }
-                            else if (!IsUsed(FirstUsed3))
-                            {
-                                return true;
-                            }
-                            else index = 0;
-                        }
-                    }
-                    else
-                    {
-                        index = 0;
-                        use3x = 0;
-                    }
-                    sx++;
-                }
-            }
-            FirstUsed3 = -1;
-            LastUsed3 = -1;
-            return false;
-        }*/
         
     }
 }
