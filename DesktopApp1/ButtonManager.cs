@@ -31,7 +31,7 @@ namespace Tic_Tac_Toe_25x25
                     this.button[index].Location = new System.Drawing.Point(x, y);
                     this.button[index].Size = new System.Drawing.Size(30, 30);
                     this.button[index].TabIndex = index;
-                    this.button[index].Text = index.ToString();
+                    //this.button[index].Text = index.ToString();
                     this.button[index].UseVisualStyleBackColor = true;
                     this.button[index].Click += ButtonManager_Click;
                     form.Controls.Add(button[index]);
