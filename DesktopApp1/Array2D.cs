@@ -9,7 +9,11 @@ namespace Tic_Tac_Toe_25x25
 {
     class EnermyEventArgs : EventArgs
     {
-        
+        public int[] Index { get; set; }
+        internal void Size(int index = 8)
+        {
+            this.Index = new int[index];
+        }
     }
 
     class PeopleNearWinEventArgs : EventArgs
@@ -849,7 +853,7 @@ namespace Tic_Tac_Toe_25x25
             else return true;
         }
 
-        protected bool IsLastColumn(int index)
+        public bool IsLastColumn(int index)
         {
             for (int i = Size-1; i < Count; i+=Size)
             {
@@ -858,7 +862,7 @@ namespace Tic_Tac_Toe_25x25
             return false;
         }
 
-        protected bool IsFirstColumn(int index)
+        public bool IsFirstColumn(int index)
         {
             for (int i = 0; i < Count; i+=Size)
             {
@@ -867,7 +871,7 @@ namespace Tic_Tac_Toe_25x25
             return false;
         }
 
-        protected bool IsUpRow(int index)
+        public bool IsUpRow(int index)
         {
             for (int i = 0; i < Size; i++)
             {
@@ -876,7 +880,7 @@ namespace Tic_Tac_Toe_25x25
             return false;
         }
 
-        protected bool IsDownRow(int index)
+        public bool IsDownRow(int index)
         {
             for (int i = Count - Size; i < Count; i++)
             {
@@ -895,6 +899,90 @@ namespace Tic_Tac_Toe_25x25
 
         public void PeopleClick(int index)
         {
+            if (IsFirstColumn(index))
+            {
+                if (index == 0)
+                {
+
+                    enermyEventArgs.Size(3);
+                    enermyEventArgs.Index[0] = index + Size;
+                    enermyEventArgs.Index[1] = index + 1;
+                    enermyEventArgs.Index[2] = index + (Size + 1);
+                }
+                else if (index == 600)
+                {
+                    enermyEventArgs.Size(3);
+                    enermyEventArgs.Index[1] = index - Size;
+                    enermyEventArgs.Index[2] = index - (Size - 1);
+                    enermyEventArgs.Index[0] = index + 1;
+                }
+                else
+                {
+                    enermyEventArgs.Size(5);
+                    enermyEventArgs.Index[1] = index - Size;
+                    enermyEventArgs.Index[2] = index - (Size - 1);
+                    enermyEventArgs.Index[4] = index + 1;
+                    enermyEventArgs.Index[0] = index + (Size + 1);
+                    enermyEventArgs.Index[3] = index + Size;
+                }               
+            }
+            else if (IsLastColumn(index))
+            {
+                if (index == 24)
+                {
+                    enermyEventArgs.Size(3);
+                    enermyEventArgs.Index[0] = index + Size;
+                    enermyEventArgs.Index[1] = index + (Size - 1);
+                    enermyEventArgs.Index[2] = index - 1;
+                }
+                else if (index == 624)
+                {
+                    enermyEventArgs.Size(3);
+                    enermyEventArgs.Index[0] = index - (Size + 1);
+                    enermyEventArgs.Index[1] = index - Size;
+                    enermyEventArgs.Index[2] = index - 1;
+                }
+                else
+                {
+                    enermyEventArgs.Size(5);
+                    enermyEventArgs.Index[1] = index - Size;
+                    enermyEventArgs.Index[0] = index - (Size + 1);
+                    enermyEventArgs.Index[2] = index + (Size - 1);
+                    enermyEventArgs.Index[4] = index + Size;
+                    enermyEventArgs.Index[3] = index - 1;
+                }               
+            }
+            else if (IsUpRow(index))
+            {
+                enermyEventArgs.Size(5);
+                enermyEventArgs.Index[3] = index - 1;
+                enermyEventArgs.Index[4] = index + 1;
+                enermyEventArgs.Index[0] = index + (Size + 1);
+                enermyEventArgs.Index[1] = index + (Size - 1);
+                enermyEventArgs.Index[2] = index + Size;
+            }
+            else if (IsDownRow(index))
+            {
+                enermyEventArgs.Size(5);
+                enermyEventArgs.Index[0] = index - (Size + 1);
+                enermyEventArgs.Index[1] = index - Size;
+                enermyEventArgs.Index[2] = index - (Size - 1);
+                enermyEventArgs.Index[3] = index - 1;
+                enermyEventArgs.Index[4] = index + 1;
+            }
+            else
+            {
+                enermyEventArgs.Size(8);
+                enermyEventArgs.Index[3] = index - 1;
+                enermyEventArgs.Index[4] = index + 1;
+                enermyEventArgs.Index[1] = index - Size;
+                enermyEventArgs.Index[6] = index + Size;
+                enermyEventArgs.Index[0] = index - (Size + 1);
+                enermyEventArgs.Index[7] = index + (Size + 1);
+                enermyEventArgs.Index[2] = index - (Size - 1);
+                enermyEventArgs.Index[5] = index + (Size - 1);
+            }
+           
             Data[index] = 0;
             PeopleWinUpDown();
             PeopleWinBackWard();

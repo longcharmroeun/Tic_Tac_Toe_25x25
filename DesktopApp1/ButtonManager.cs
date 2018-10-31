@@ -31,7 +31,7 @@ namespace Tic_Tac_Toe_25x25
                     this.button[index].Location = new System.Drawing.Point(x, y);
                     this.button[index].Size = new System.Drawing.Size(30, 30);
                     this.button[index].TabIndex = index;
-                    //this.button[index].Text = index.ToString();
+                    this.button[index].Text = index.ToString();
                     this.button[index].UseVisualStyleBackColor = true;
                     this.button[index].Click += ButtonManager_Click;
                     form.Controls.Add(button[index]);
@@ -59,16 +59,18 @@ namespace Tic_Tac_Toe_25x25
 
         private void Array_EnermyEvent(object sender, EnermyEventArgs e)
         {
-            while (true)
+            int s = 0;
+            do
             {
-                int index = Random.Next(0, Array.Count);
-                if (!(Array.IsUsed(index)))
+                s++;
+                int i = Random.Next(0, e.Index.Length);
+                if (!(Array.IsUsed(e.Index[i]) && !Array.IsOutBound(e.Index[i])) && !Array.IsFirstColumn(e.Index[i]) && !Array.IsFirstColumn(e.Index[i]) && !Array.IsUpRow(e.Index[i]) && !Array.IsDownRow(e.Index[i]))
                 {
-                    button[index].Image = Image.FromFile(@"..\..\Image\cross.png");
-                    Array.EnermyClick(index);
+                    button[e.Index[i]].Image = Image.FromFile(@"..\..\Image\cross.png");
+                    Array.EnermyClick(e.Index[i]);
                     break;
                 }
-            }
+            } while (s <= 20);
         }
 
         private void ButtonManager_Click(object sender, EventArgs e)
