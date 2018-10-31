@@ -20,16 +20,16 @@ namespace Tic_Tac_Toe_25x25
             Data.FirstDataSerializingXML.DeSerializingXML(ref firstData);
             Data.User user = new Data.User();
             Data.SerializingXML.DeSerializing(ref user);
-            bool IsMainForm = false;
+            int s = 0;
             for (int i = 0; i < user.DataList.Count; i++)
             {
-                if(firstData.User == user.DataList.ElementAt(i).User&&firstData.Password == user.DataList.ElementAt(i).Password)
+                if (firstData.User == user.DataList.ElementAt(i).User && firstData.Password == user.DataList.ElementAt(i).Password)
                 {
-                    IsMainForm = true;
-                    Application.Run(new MainForm(user,firstData));
+                    Application.Run(new MainForm(user, firstData));
                 }
+                else s++;
             }
-            if (!IsMainForm)
+            if (s == user.DataList.Count)
             {
                 MessageBox.Show("Could Not Loging.");
                 Application.Run(new LoginSignup.LoginForm(user));
