@@ -20,6 +20,7 @@ namespace Tic_Tac_Toe_25x25
             Array.PeopleNearWinEvent += Array_PeopleNearWinEvent;
             Array.WinEvent += Array_WinEvent;
             Array.EnermyEvent += Array_EnermyEvent;
+            Array.EnermyNearWinEvent += Array_EnermyNearWinEvent;
             Random = new Random();
             int x = 0, y = 1, index = 0;
             button = new Button[Array.Count];
@@ -31,7 +32,7 @@ namespace Tic_Tac_Toe_25x25
                     this.button[index].Location = new System.Drawing.Point(x, y);
                     this.button[index].Size = new System.Drawing.Size(30, 30);
                     this.button[index].TabIndex = index;
-                    this.button[index].Text = index.ToString();
+                    //this.button[index].Text = index.ToString();
                     this.button[index].UseVisualStyleBackColor = true;
                     this.button[index].Click += ButtonManager_Click;
                     form.Controls.Add(button[index]);
@@ -40,6 +41,21 @@ namespace Tic_Tac_Toe_25x25
                 }
                 y += 30;
                 x = 0;
+            }
+        }
+
+        private void Array_EnermyNearWinEvent(object sender, EnermyNearWinEventArgs e)
+        {
+            MessageBox.Show("");
+            if (!(Array.IsUsed(e.FirstIndex)) && !Array.IsOutBound(e.FirstIndex))
+            {
+                button[e.FirstIndex].Image = Image.FromFile(@"..\..\Image\cross.png");
+                Array.EnermyClick(e.FirstIndex);
+            }
+            else if (!(Array.IsUsed(e.LastIndex)) && !Array.IsOutBound(e.LastIndex))
+            {
+                button[e.LastIndex].Image = Image.FromFile(@"..\..\Image\cross.png");
+                Array.EnermyClick(e.LastIndex);
             }
         }
 

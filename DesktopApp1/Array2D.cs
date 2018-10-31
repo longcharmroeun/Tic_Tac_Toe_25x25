@@ -22,15 +22,23 @@ namespace Tic_Tac_Toe_25x25
         public int FirstIndex { get; set; }
     }
 
+    class EnermyNearWinEventArgs : EventArgs
+    {
+        public int LastIndex { get; set; }
+        public int FirstIndex { get; set; }
+    }
+
     class Array2D
     {
         protected WinEventArgs winEventArgs;
-        protected readonly EnermyEventArgs enermyEventArgs;
-        protected readonly PeopleNearWinEventArgs peopleNearWin;
+        protected EnermyEventArgs enermyEventArgs;
+        protected PeopleNearWinEventArgs peopleNearWin;
+        protected EnermyNearWinEventArgs enermyNearWinEvent;
 
         public event EventHandler<WinEventArgs> WinEvent;
         public event EventHandler<EnermyEventArgs> EnermyEvent;
-        public event EventHandler<PeopleNearWinEventArgs> PeopleNearWinEvent; 
+        public event EventHandler<PeopleNearWinEventArgs> PeopleNearWinEvent;
+        public event EventHandler<EnermyNearWinEventArgs> EnermyNearWinEvent;
 
         protected short[] Data { get; set; }
         public int Size { get; set; }
@@ -38,9 +46,7 @@ namespace Tic_Tac_Toe_25x25
        
         public Array2D(int Size)
         {
-            winEventArgs = new WinEventArgs();
-            enermyEventArgs = new EnermyEventArgs();
-            peopleNearWin = new PeopleNearWinEventArgs();
+            EventImplementClass();
 
             Array2D array2D = this;
             array2D.Size = Size;
@@ -50,6 +56,14 @@ namespace Tic_Tac_Toe_25x25
             {
                 Data[i] = -1;
             }
+        }
+
+        private void EventImplementClass()
+        {
+            winEventArgs = new WinEventArgs();
+            enermyEventArgs = new EnermyEventArgs();
+            peopleNearWin = new PeopleNearWinEventArgs();
+            enermyNearWinEvent = new EnermyNearWinEventArgs();
         }
 
         //bug here
@@ -987,7 +1001,8 @@ namespace Tic_Tac_Toe_25x25
             PeopleWinUpDown();
             PeopleWinBackWard();
             PeopleWinForWard();
-            if(!EnermyNearLost()) EnermyEvent(this, enermyEventArgs); ;
+            if (!EnermyNearWin()) EnermyEvent(this, enermyEventArgs);
+            else if(!EnermyNearLost()) EnermyEvent(this, enermyEventArgs);
         }
 
 
@@ -2856,6 +2871,528 @@ namespace Tic_Tac_Toe_25x25
                 winx = 0;
             }
         }
-        
+
+
+
+
+
+        //
+        protected bool EnermyNearWin()
+        {
+            int sx = 0, winx = 0, winy = 0;
+            int[] UsedX = new int[Size];
+            int[] UsedY = new int[Size];
+            /*//BackWard
+            if (EnermyLostBackWard())
+            {
+                return true;
+            }
+
+            //ForWard
+            if (EnermyNearLostForWard())
+            {
+                return true;
+            }*/
+
+            //Row
+            for (int i = 0; i < Size; i++)
+            {
+                for (int j = i; j < Count; j += Size)
+                {
+                    if (Data[j] == 1)
+                    {
+                        if (j <= Count - (Size * 4) + i)
+                        {
+                            if (!IsUpRow(j) && !IsDownRow(j + Size * 3))
+                            {
+                                if (!IsUsed(j + Size * 1) && IsEnermyUsed(j + Size * 2) && IsEnermyUsed(j + Size * 3) && !IsPeopleUse(j - Size * 1) && !IsPeopleUse(j + Size * 4))
+                                {
+                                    enermyNearWinEvent.FirstIndex = j + Size * 1;
+                                    enermyNearWinEvent.LastIndex = -1;
+                                    EnermyNearWinEvent(this, enermyNearWinEvent);
+                                    return true;
+                                }
+                                else if (IsEnermyUsed(j + Size * 1) && !IsUsed(j + Size * 2) && IsEnermyUsed(j + Size * 3) && !IsPeopleUse(j - Size * 1) && !IsPeopleUse(j + Size * 4))
+                                {
+                                    enermyNearWinEvent.FirstIndex = j + Size * 2;
+                                    enermyNearWinEvent.LastIndex = -1;
+                                    EnermyNearWinEvent(this, enermyNearWinEvent);
+                                    return true;
+                                }
+                            }
+                            if (IsEnermyUsed(j + Size * 1) && !IsUsed(j + Size * 2) && IsEnermyUsed(j + Size * 3) && IsEnermyUsed(j + Size * 4))
+                            {
+                                enermyNearWinEvent.FirstIndex = j + Size * 2;
+                                enermyNearWinEvent.LastIndex = -1;
+                                EnermyNearWinEvent(this, enermyNearWinEvent);
+                                return true;
+                            }
+                        }
+
+                        UsedY[winy] = j;
+                        winy++;
+                        if (winy == 2)
+                        {
+                            if (!IsUpRow(UsedY[0]) && !IsDownRow(UsedY[1]) && !IsFirstColumn(UsedY[0]) && !IsLastColumn(UsedY[0]))
+                            {
+                                enermyNearWinEvent.LastIndex = UsedY[1] + Size;
+                                enermyNearWinEvent.FirstIndex = UsedY[0] - Size;
+
+                                //2Road Win Row and Column
+                                if (Win2RoadRow(1)) return true;
+
+                                //2Road Win Column and ForWard
+                                else if (Win2RoadRow(Size + 1)) return true;
+
+
+                                //2Road Win Column and BackWard
+                                else if (Win2RoadRow(Size - 1)) return true;
+
+                                else
+                                {
+                                    enermyNearWinEvent.FirstIndex = UsedY[0] - Size * 2;
+                                    enermyNearWinEvent.LastIndex = UsedY[1] + Size * 2;
+
+                                    //2Road Win Row and Column
+                                    if (Win2RoadRow(1)) return true;
+
+                                    //2Road Win Column and ForWard
+                                    else if (Win2RoadRow(Size + 1)) return true;
+
+
+                                    //2Road Win Column and BackWard
+                                    else if (Win2RoadRow(Size - 1)) return true;
+                                }
+                            }
+                        }
+                        else if (winy == 3 && !IsFirstColumn(UsedY[0]) && !IsLastColumn(UsedY[0]))
+                        {
+                            enermyNearWinEvent.FirstIndex = UsedY[0] - Size;
+                            enermyNearWinEvent.LastIndex = UsedY[2] + Size;
+
+                            if (IsDownRow(UsedY[2]) && !IsUsed(enermyNearWinEvent.FirstIndex))
+                            {
+                                //2Road Win Row and Column
+                                if (Win2RoadRow(1, 0)) return true;
+
+                                //2Road Win Column and ForWard
+                                else if (Win2RoadRow(Size + 1, 0)) return true;
+
+                                //2Road Win Column and BackWard
+                                else if (Win2RoadRow(Size - 1, 0)) return true;
+                            }
+                            if (IsUpRow(UsedY[0]) && !IsUsed(enermyNearWinEvent.LastIndex))
+                            {
+                                //2Road Win Row and Column
+                                if (Win2RoadRow(1, 1)) return true;
+
+                                //2Road Win Column and ForWard
+                                else if (Win2RoadRow(Size + 1, 1)) return true;
+
+                                //2Road Win Column and BackWard
+                                else if (Win2RoadRow(Size - 1, 1)) return true;
+                            }
+                            if (!IsUsed(enermyNearWinEvent.FirstIndex))
+                            {
+                                //2Road Win Row and Column
+                                if (Win2RoadRow(1, 0)) return true;
+
+                                //2Road Win Column and ForWard
+                                else if (Win2RoadRow(Size + 1, 0)) return true;
+
+                                //2Road Win Column and BackWard
+                                else if (Win2RoadRow(Size - 1, 0)) return true;
+
+                                else
+                                {
+                                    enermyNearWinEvent.FirstIndex = UsedY[0] - Size * 2;
+                                    enermyNearWinEvent.LastIndex = UsedY[2] + Size * 2;
+
+                                    if (IsDownRow(UsedY[2]) && !IsUsed(enermyNearWinEvent.FirstIndex))
+                                    {
+                                        //2Road Win Row and Column
+                                        if (Win2RoadRow(1, 0)) return true;
+
+                                        //2Road Win Column and ForWard
+                                        else if (Win2RoadRow(Size + 1, 0)) return true;
+
+                                        //2Road Win Column and BackWard
+                                        else if (Win2RoadRow(Size - 1, 0)) return true;
+                                    }
+                                    if (!IsUsed(enermyNearWinEvent.FirstIndex))
+                                    {
+                                        //2Road Win Row and Column
+                                        if (Win2RoadRow(1, 0)) return true;
+
+                                        //2Road Win Column and ForWard
+                                        else if (Win2RoadRow(Size + 1, 0)) return true;
+
+                                        //2Road Win Column and BackWard
+                                        else if (Win2RoadRow(Size - 1, 0)) return true;
+                                    }
+                                }
+                            }
+                            if (!IsUsed(enermyNearWinEvent.LastIndex))
+                            {
+                                //2Road Win Row and Column
+                                if (Win2RoadRow(1, 1)) return true;
+
+                                //2Road Win Column and ForWard
+                                else if (Win2RoadRow(Size + 1, 1)) return true;
+
+                                //2Road Win Column and BackWard
+                                else if (Win2RoadRow(Size - 1, 1)) return true;
+
+                                else
+                                {
+                                    enermyNearWinEvent.FirstIndex = UsedY[0] - Size * 2;
+                                    enermyNearWinEvent.LastIndex = UsedY[2] + Size * 2;
+
+                                    if (IsUpRow(UsedY[0]) && !IsUsed(enermyNearWinEvent.LastIndex))
+                                    {
+                                        //2Road Win Row and Column
+                                        if (Win2RoadRow(1, 1)) return true;
+
+                                        //2Road Win Column and ForWard
+                                        else if (Win2RoadRow(Size + 1, 1)) return true;
+
+                                        //2Road Win Column and BackWard
+                                        else if (Win2RoadRow(Size - 1, 1)) return true;
+                                    }
+                                    if (!IsUsed(enermyNearWinEvent.LastIndex))
+                                    {
+                                        //2Road Win Row and Column
+                                        if (Win2RoadRow(1, 1)) return true;
+
+                                        //2Road Win Column and ForWard
+                                        else if (Win2RoadRow(Size + 1, 1)) return true;
+
+                                        //2Road Win Column and BackWard
+                                        else if (Win2RoadRow(Size - 1, 1)) return true;
+                                    }
+                                }
+                            }
+                        }
+                        if (winy >= 3)
+                        {
+                            if (!IsUpRow(UsedY[0]) && !IsDownRow(UsedY[2]))
+                            {
+                                enermyNearWinEvent.LastIndex = UsedY[2] + Size;
+                                enermyNearWinEvent.FirstIndex = UsedY[0] - Size;
+                                if (!IsUsed(enermyNearWinEvent.LastIndex) && !IsUsed(enermyNearWinEvent.FirstIndex) &&
+                                    !IsOutBound(enermyNearWinEvent.FirstIndex) && !IsOutBound(enermyNearWinEvent.LastIndex)
+                                    && !IsEnermyUsed(enermyNearWinEvent.LastIndex) && !IsEnermyUsed(enermyNearWinEvent.FirstIndex))
+                                {
+                                    EnermyNearWinEvent(this, enermyNearWinEvent);
+                                    return true;
+                                }
+                            }
+                            if (winy >= 4)
+                            {
+                                if (IsUpRow(UsedY[0]))
+                                {
+                                    enermyNearWinEvent.LastIndex = UsedY[3] + Size;
+                                    enermyNearWinEvent.FirstIndex = -1;
+                                    if (!IsEnermyUsed(enermyNearWinEvent.LastIndex))
+                                    {
+                                        EnermyNearWinEvent(this, enermyNearWinEvent);
+                                        return true;
+                                    }
+                                }
+                                else if (IsDownRow(UsedY[3]))
+                                {
+                                    enermyNearWinEvent.LastIndex = -1;
+                                    enermyNearWinEvent.FirstIndex = UsedY[0] - Size;
+                                    if (!IsEnermyUsed(enermyNearWinEvent.FirstIndex))
+                                    {
+                                        EnermyNearWinEvent(this, enermyNearWinEvent);
+                                        return true;
+                                    }
+                                }
+                                else
+                                {
+                                    enermyNearWinEvent.LastIndex = UsedY[3] + Size;
+                                    enermyNearWinEvent.FirstIndex = UsedY[0] - Size;
+                                    if (!IsEnermyUsed(enermyNearWinEvent.FirstIndex) && IsEnermyUsed(enermyNearWinEvent.LastIndex))
+                                    {
+                                        enermyNearWinEvent.LastIndex = -1;
+                                        EnermyNearWinEvent(this, enermyNearWinEvent);
+                                        return true;
+                                    }
+                                    else if (IsEnermyUsed(enermyNearWinEvent.FirstIndex) && !IsEnermyUsed(enermyNearWinEvent.LastIndex))
+                                    {
+                                        enermyNearWinEvent.FirstIndex = -1;
+                                        EnermyNearWinEvent(this, enermyNearWinEvent);
+                                        return true;
+                                    }
+                                    else if (!IsEnermyUsed(enermyNearWinEvent.FirstIndex) && !IsEnermyUsed(enermyNearWinEvent.LastIndex))
+                                    {
+                                        EnermyNearWinEvent(this, enermyNearWinEvent);
+                                        return true;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    else winy = 0;
+                }
+                winy = 0;
+
+
+                //Column
+                for (int j = 0; j < Size; j++)
+                {
+                    if (Data[sx] == 1)
+                    {
+                        if (sx >= i * Size && sx <= (i * Size) + Size - 4)
+                        {
+                            if (!IsFirstColumn(sx) && !IsLastColumn(sx + 3))
+                            {
+                                if (!IsUsed(sx + 1) && IsEnermyUsed(sx + 2) && IsEnermyUsed(sx + 3) && !IsPeopleUse(sx - 1) && !IsPeopleUse(sx + 4))
+                                {
+                                    enermyNearWinEvent.FirstIndex = sx + 1;
+                                    enermyNearWinEvent.LastIndex = -1;
+                                    EnermyNearWinEvent(this, enermyNearWinEvent);
+                                    return true;
+                                }
+                                else if (IsEnermyUsed(sx + 1) && !IsUsed(sx + 2) && IsEnermyUsed(sx + 3) && !IsPeopleUse(sx - 1) && !IsPeopleUse(sx + 4))
+                                {
+                                    enermyNearWinEvent.FirstIndex = sx + 2;
+                                    enermyNearWinEvent.LastIndex = -1;
+                                    EnermyNearWinEvent(this, enermyNearWinEvent);
+                                    return true;
+                                }
+                            }
+                        }
+                        if (IsEnermyUsed(sx + 1) && !IsUsed(sx + 2) && IsEnermyUsed(sx + 3) && IsEnermyUsed(sx + 4))
+                        {
+                            enermyNearWinEvent.FirstIndex = sx + 2;
+                            enermyNearWinEvent.LastIndex = -1;
+                            EnermyNearWinEvent(this, enermyNearWinEvent);
+                            return true;
+                        }
+
+                        UsedX[winx] = sx;
+                        winx++;
+
+
+                        //2Road Win
+                        if (winx == 2 && !IsUpRow(UsedX[0]) && !IsDownRow(UsedX[0]) && !IsFirstColumn(UsedX[0]) && !IsLastColumn(UsedX[1]))
+                        {
+                            enermyNearWinEvent.FirstIndex = UsedX[0] - 1;
+                            enermyNearWinEvent.LastIndex = UsedX[1] + 1;
+
+
+                            //2Road Win Row and Column
+                            if (Win2RoadColumn(Size)) return true;
+
+                            //2Road Win Column and ForWard
+                            else if (Win2RoadColumn(Size + 1)) return true;
+
+
+                            //2Road Win Column and BackWard
+                            else if (Win2RoadColumn(Size - 1)) return true;
+
+                            else
+                            {
+                                enermyNearWinEvent.FirstIndex = UsedX[0] - 1 * 2;
+                                enermyNearWinEvent.LastIndex = UsedX[1] + 1 * 2;
+
+                                //2Road Win Row and Column
+                                if (Win2RoadColumn(Size)) return true;
+
+                                //2Road Win Column and ForWard
+                                else if (Win2RoadColumn(Size + 1)) return true;
+
+
+                                //2Road Win Column and BackWard
+                                else if (Win2RoadColumn(Size - 1)) return true;
+                            }
+                        }
+                        else if (winx == 3 && !IsUpRow(UsedX[0]) && !IsDownRow(UsedX[0]))
+                        {
+                            enermyNearWinEvent.FirstIndex = UsedX[0] - 1;
+                            enermyNearWinEvent.LastIndex = UsedX[2] + 1;
+
+                            if (IsLastColumn(UsedX[2]) && !IsUsed(enermyNearWinEvent.FirstIndex))
+                            {
+                                //2Road Win Row and Column
+                                if (Win2RoadColumn(Size, 0)) return true;
+
+                                //2Road Win Column and ForWard
+                                else if (Win2RoadColumn(Size + 1, 0)) return true;
+
+                                //2Road Win Column and BackWard
+                                else if (Win2RoadColumn(Size - 1, 0)) return true;
+                            }
+                            if (IsFirstColumn(UsedX[0]) && !IsUsed(enermyNearWinEvent.LastIndex))
+                            {
+                                //2Road Win Row and Column
+                                if (Win2RoadColumn(Size, 1)) return true;
+
+                                //2Road Win Column and ForWard
+                                else if (Win2RoadColumn(Size + 1, 1)) return true;
+
+                                //2Road Win Column and BackWard
+                                else if (Win2RoadColumn(Size - 1, 1)) return true;
+                            }
+                            if (!IsUsed(enermyNearWinEvent.FirstIndex))
+                            {
+                                //2Road Win Row and Column
+                                if (Win2RoadColumn(Size, 0)) return true;
+
+                                //2Road Win Column and ForWard
+                                else if (Win2RoadColumn(Size + 1, 0)) return true;
+
+                                //2Road Win Column and BackWard
+                                else if (Win2RoadColumn(Size - 1, 0)) return true;
+
+                                else
+                                {
+                                    enermyNearWinEvent.FirstIndex = UsedX[0] - 1 * 2;
+                                    enermyNearWinEvent.LastIndex = UsedX[2] + 1 * 2;
+
+                                    if (IsLastColumn(UsedX[2]) && !IsUsed(enermyNearWinEvent.FirstIndex))
+                                    {
+                                        //2Road Win Row and Column
+                                        if (Win2RoadColumn(Size, 0)) return true;
+
+                                        //2Road Win Column and ForWard
+                                        else if (Win2RoadColumn(Size + 1, 0)) return true;
+
+                                        //2Road Win Column and BackWard
+                                        else if (Win2RoadColumn(Size - 1, 0)) return true;
+                                    }
+
+                                    if (!IsUsed(enermyNearWinEvent.FirstIndex))
+                                    {
+                                        //2Road Win Row and Column
+                                        if (Win2RoadColumn(Size, 0)) return true;
+
+                                        //2Road Win Column and ForWard
+                                        else if (Win2RoadColumn(Size + 1, 0)) return true;
+
+                                        //2Road Win Column and BackWard
+                                        else if (Win2RoadColumn(Size - 1, 0)) return true;
+                                    }
+
+
+                                }
+                            }
+                            if (!IsUsed(enermyNearWinEvent.LastIndex))
+                            {
+
+                                //2Road Win Row and Column
+                                if (Win2RoadColumn(Size, 1)) return true;
+
+                                //2Road Win Column and ForWard
+                                else if (Win2RoadColumn(Size + 1, 1)) return true;
+
+                                //2Road Win Column and BackWard
+                                else if (Win2RoadColumn(Size - 1, 1)) return true;
+
+                                else
+                                {
+                                    enermyNearWinEvent.FirstIndex = UsedX[0] - 1 * 2;
+                                    enermyNearWinEvent.LastIndex = UsedX[2] + 1 * 2;
+
+                                    if (IsFirstColumn(UsedX[0]) && !IsUsed(enermyNearWinEvent.LastIndex))
+                                    {
+                                        //2Road Win Row and Column
+                                        if (Win2RoadColumn(Size, 1)) return true;
+
+                                        //2Road Win Column and ForWard
+                                        else if (Win2RoadColumn(Size + 1, 1)) return true;
+
+                                        //2Road Win Column and BackWard
+                                        else if (Win2RoadColumn(Size - 1, 1)) return true;
+                                    }
+
+                                    if (!IsUsed(enermyNearWinEvent.LastIndex))
+                                    {
+                                        //2Road Win Row and Column
+                                        if (Win2RoadColumn(Size, 1)) return true;
+
+                                        //2Road Win Column and ForWard
+                                        else if (Win2RoadColumn(Size + 1, 1)) return true;
+
+                                        //2Road Win Column and BackWard
+                                        else if (Win2RoadColumn(Size - 1, 1)) return true;
+                                    }
+
+
+                                }
+                            }
+                        }
+
+
+                        if (winx >= 3)
+                        {
+                            if (!IsFirstColumn(UsedX[0]) && !IsLastColumn(UsedX[2]))
+                            {
+                                enermyNearWinEvent.LastIndex = UsedX[2] + 1;
+                                enermyNearWinEvent.FirstIndex = UsedX[0] - 1;
+                                if (!IsUsed(enermyNearWinEvent.LastIndex) && !IsUsed(enermyNearWinEvent.FirstIndex) &&
+                                    !IsOutBound(enermyNearWinEvent.FirstIndex) && !IsOutBound(enermyNearWinEvent.LastIndex)
+                                    && !IsEnermyUsed(enermyNearWinEvent.LastIndex) && !IsEnermyUsed(enermyNearWinEvent.FirstIndex))
+                                {
+                                    EnermyNearWinEvent(this, enermyNearWinEvent);
+                                    return true;
+                                }
+                            }
+                            if (winx >= 4)
+                            {
+                                if (IsFirstColumn(UsedX[0]))
+                                {
+                                    enermyNearWinEvent.LastIndex = UsedX[3] + 1;
+                                    enermyNearWinEvent.FirstIndex = -1;
+                                    if (!IsEnermyUsed(enermyNearWinEvent.LastIndex))
+                                    {
+                                        EnermyNearWinEvent(this, enermyNearWinEvent);
+                                        return true;
+                                    }
+                                }
+                                else if (IsLastColumn(UsedX[3]))
+                                {
+                                    enermyNearWinEvent.LastIndex = -1;
+                                    enermyNearWinEvent.FirstIndex = UsedX[0] - 1;
+                                    if (!IsEnermyUsed(enermyNearWinEvent.FirstIndex))
+                                    {
+                                        EnermyNearWinEvent(this, enermyNearWinEvent);
+                                        return true;
+                                    }
+                                }
+                                else
+                                {
+                                    enermyNearWinEvent.LastIndex = UsedX[3] + 1;
+                                    enermyNearWinEvent.FirstIndex = UsedX[0] - 1;
+                                    if (!IsEnermyUsed(enermyNearWinEvent.FirstIndex) && IsEnermyUsed(enermyNearWinEvent.LastIndex))
+                                    {
+                                        enermyNearWinEvent.LastIndex = -1;
+                                        EnermyNearWinEvent(this, enermyNearWinEvent);
+                                        return true;
+                                    }
+                                    else if (IsEnermyUsed(enermyNearWinEvent.FirstIndex) && !IsEnermyUsed(enermyNearWinEvent.LastIndex))
+                                    {
+                                        enermyNearWinEvent.FirstIndex = -1;
+                                        EnermyNearWinEvent(this, enermyNearWinEvent);
+                                        return true;
+                                    }
+                                    else if (!IsEnermyUsed(enermyNearWinEvent.FirstIndex) && !IsEnermyUsed(enermyNearWinEvent.LastIndex))
+                                    {
+                                        EnermyNearWinEvent(this, enermyNearWinEvent);
+                                        return true;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    else winx = 0;
+                    sx++;
+                }
+                winx = 0;
+            }
+            return false;
+        }
     }
 }
