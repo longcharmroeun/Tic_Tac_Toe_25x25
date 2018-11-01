@@ -31,7 +31,7 @@ namespace Tic_Tac_Toe_25x25
                     }
                     else s++;
                 }
-            }\            
+            }
             else
             {
                 MessageBox.Show("Could not found data.");
