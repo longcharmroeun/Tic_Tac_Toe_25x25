@@ -23,15 +23,18 @@ namespace Tic_Tac_Toe_25x25.LoginSignup
         private void button1_Click(object sender, EventArgs e)
         {
             bool IsUsed = false;
-            for (int i = 0; i < user.DataList.Count; i++)
+            if (user.DataList != null)
             {
-                if(User.Text == user.DataList.ElementAt(i).User)
+                for (int i = 0; i < user.DataList.Count; i++)
                 {
-                    IsUsed = true;
-                    MessageBox.Show("This User already Used.");
-                    break;
+                    if (User.Text == user.DataList.ElementAt(i).User)
+                    {
+                        IsUsed = true;
+                        MessageBox.Show("This User already Used.");
+                        break;
+                    }
                 }
-            }
+            }           
             if (Password.Text == RPassword.Text && Password.Text != string.Empty && RPassword.Text != string.Empty && FName.Text != string.Empty && !IsUsed)
             {
                 data.FullName = FName.Text;
@@ -51,7 +54,10 @@ namespace Tic_Tac_Toe_25x25.LoginSignup
                     data.Sex = famale.Text;
                 }
                 else MessageBox.Show("Please choose a gender.");
-                //user.DataList = new List<Data.Data>();
+                if(user.DataList == null)
+                {
+                    user.DataList = new List<Data.Data>();
+                }
                 user.DataList.Add(data);
                 Data.SerializingXML.Serializing(user);
                 LoginForm login = new LoginForm(user);

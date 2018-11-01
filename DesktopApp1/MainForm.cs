@@ -47,7 +47,8 @@ namespace Tic_Tac_Toe_25x25
         private void MainForm_Load(object sender, EventArgs e)
         {
             playername.Text = FirstData.FullName;
-            pictureBox1.Image = Image.FromFile(FirstData.Patch);
+            if (FirstData.Patch == null) MessageBox.Show("Could Finde Image.");
+            else pictureBox1.Image = Image.FromFile(FirstData.Patch);
             win.Text = FirstData.Win.ToString();
             lose.Text = FirstData.Lose.ToString();
             gold.Text = FirstData.Gold.ToString();

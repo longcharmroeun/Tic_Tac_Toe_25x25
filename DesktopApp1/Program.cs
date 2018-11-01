@@ -21,13 +21,21 @@ namespace Tic_Tac_Toe_25x25
             Data.User user = new Data.User();
             Data.SerializingXML.DeSerializing(ref user);
             int s = 0;
-            for (int i = 0; i < user.DataList.Count; i++)
+            if(user.DataList != null)
             {
-                if (firstData.User == user.DataList.ElementAt(i).User && firstData.Password == user.DataList.ElementAt(i).Password)
+                for (int i = 0; i < user.DataList.Count; i++)
                 {
-                    Application.Run(new MainForm(user, firstData));
+                    if (firstData.User == user.DataList.ElementAt(i).User && firstData.Password == user.DataList.ElementAt(i).Password)
+                    {
+                        Application.Run(new MainForm(user, firstData));
+                    }
+                    else s++;
                 }
-                else s++;
+            }\            
+            else
+            {
+                MessageBox.Show("Could not found data.");
+                Application.Run(new LoginSignup.LoginForm(user));
             }
             if (s == user.DataList.Count)
             {

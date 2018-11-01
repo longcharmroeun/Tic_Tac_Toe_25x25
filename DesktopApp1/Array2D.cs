@@ -1001,8 +1001,8 @@ namespace Tic_Tac_Toe_25x25
             PeopleWinUpDown();
             PeopleWinBackWard();
             PeopleWinForWard();
-            if (!EnermyNearWin()) EnermyEvent(this, enermyEventArgs);
-            else if(!EnermyNearLost()) EnermyEvent(this, enermyEventArgs);
+            //if (!EnermyNearWin()) EnermyEvent(this, enermyEventArgs);
+            if(!EnermyNearLost()) EnermyEvent(this, enermyEventArgs);
         }
 
 

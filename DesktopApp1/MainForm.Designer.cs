@@ -68,7 +68,7 @@
             // 
             // signout
             // 
-            this.signout.Location = new System.Drawing.Point(897, 726);
+            this.signout.Location = new System.Drawing.Point(812, 241);
             this.signout.Name = "signout";
             this.signout.Size = new System.Drawing.Size(75, 23);
             this.signout.TabIndex = 1;
@@ -190,7 +190,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(984, 761);
+            this.ClientSize = new System.Drawing.Size(984, 749);
             this.Controls.Add(this.gold);
             this.Controls.Add(this.money);
             this.Controls.Add(this.lose);
