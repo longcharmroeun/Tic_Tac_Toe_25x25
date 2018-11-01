@@ -47,17 +47,18 @@ namespace Tic_Tac_Toe_25x25
         private void MainForm_Load(object sender, EventArgs e)
         {
             playername.Text = FirstData.FullName;
-            if (FirstData.Patch == null) MessageBox.Show("Could Finde Image.");
+            if (FirstData.Patch == null)
+            {
+                if(FirstData.Sex == "Male") pictureBox1.Image = Image.FromFile(@"../../UserImage/MaleAvatar.jpg");
+                else pictureBox1.Image = Image.FromFile(@"../../UserImage/FamleAvatar.jpg");
+            }
+
             else pictureBox1.Image = Image.FromFile(FirstData.Patch);
+
             win.Text = FirstData.Win.ToString();
             lose.Text = FirstData.Lose.ToString();
             gold.Text = FirstData.Gold.ToString();
             money.Text = FirstData.Money.ToString();
-        }
-
-        private void pictureBox2_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
