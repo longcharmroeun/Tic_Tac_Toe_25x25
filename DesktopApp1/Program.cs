@@ -31,7 +31,7 @@ namespace Tic_Tac_Toe_25x25
                     }
                 }
             }
-            else if(user.DataList == null)
+            else
             {
                 MessageBox.Show("Could not found data.");
                 Application.Run(new LoginSignup.LoginForm(user));

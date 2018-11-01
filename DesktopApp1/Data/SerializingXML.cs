@@ -14,7 +14,7 @@ namespace Tic_Tac_Toe_25x25.Data
         public static void Serializing(User user)
         {
             XmlSerializer xml = new XmlSerializer(typeof(User));
-            using (FileStream fs = new FileStream("Data.xml", FileMode.Create))
+            using (FileStream fs = new FileStream(@"UserData/XmlData/Data.xml", FileMode.Create))
             {
                 xml.Serialize(fs, user);
             }
@@ -24,7 +24,7 @@ namespace Tic_Tac_Toe_25x25.Data
         {
             try
             {
-                using (var reader = new StreamReader("Data.xml"))
+                using (var reader = new StreamReader(@"UserData/XmlData/Data.xml"))
                 {
                     XmlSerializer deserializer = new XmlSerializer(typeof(User),
                         new XmlRootAttribute("User"));

@@ -18,6 +18,9 @@ namespace Tic_Tac_Toe_25x25.LoginSignup
         {
             InitializeComponent();
             this.user = user;
+            System.IO.Directory.CreateDirectory("UserData");
+            System.IO.Directory.CreateDirectory(@"UserData/PlayerImage");
+            System.IO.Directory.CreateDirectory(@"UserData/XmlData");
         }
 
         private bool IsUserUsed()
@@ -41,6 +44,26 @@ namespace Tic_Tac_Toe_25x25.LoginSignup
 
             else if (Password.Text == RPassword.Text && Password.Text != string.Empty && RPassword.Text != string.Empty && FName.Text != string.Empty)
             {
+                try
+                {
+                    if (user.DataList == null)
+                    {
+                        System.IO.File.Copy(data.Patch, $"UserData\\PlayerImage\\PlayerImage0");
+                        data.Patch = $"UserData\\PlayerImage\\PlayerImage0";
+                        pictureBox1.Image = Image.FromFile(openFileDialog1.FileName);
+                    }
+                    else
+                    {
+                        System.IO.File.Copy(data.Patch, $"UserData\\PlayerImage\\PlayerImage{user.DataList.Count}");
+                        data.Patch = $"UserData\\PlayerImage\\PlayerImage{user.DataList.Count}";
+                        pictureBox1.Image = Image.FromFile(openFileDialog1.FileName);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+
                 data.FullName = FName.Text;
                 data.DateBirth = Bdate.Value;
                 data.User = User.Text;
@@ -125,9 +148,15 @@ namespace Tic_Tac_Toe_25x25.LoginSignup
         {
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                System.IO.File.Copy(openFileDialog1.FileName, $"..\\..\\UserImage\\{openFileDialog1.SafeFileName}");
-                data.Patch = $"..\\..\\UserImage\\{openFileDialog1.SafeFileName}";
-                pictureBox1.Image = Image.FromFile(openFileDialog1.FileName);
+                try
+                {
+                    data.Patch = openFileDialog1.FileName;
+                    pictureBox1.Image = Image.FromFile(openFileDialog1.FileName);
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
             }
         }
     }

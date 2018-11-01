@@ -16,7 +16,7 @@ namespace Tic_Tac_Toe_25x25.Data
             FileStream fs = null;
             XmlSerializer xs = new XmlSerializer(typeof(FirstData));
 
-            using (fs = new FileStream("FirstData.xml", FileMode.Create))
+            using (fs = new FileStream(@"UserData/XmlData/FirstData.xml", FileMode.Create))
             {
                 xs.Serialize(fs, data);
             }
@@ -27,7 +27,7 @@ namespace Tic_Tac_Toe_25x25.Data
             try
             {
                 XmlSerializer xs = new XmlSerializer(typeof(FirstData));
-                using (FileStream fs = new FileStream("FirstData.xml", FileMode.Open))
+                using (FileStream fs = new FileStream(@"UserData/XmlData/FirstData.xml", FileMode.Open))
                 {
                     data = xs.Deserialize(fs) as FirstData;
                 }
