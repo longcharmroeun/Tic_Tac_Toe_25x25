@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Tic_Tac_Toe_25x25.EnermyEventArgs" Collapsed="true">
+    <Position X="5.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Array2D.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tic_Tac_Toe_25x25.PeopleNearWinEventArgs" Collapsed="true">
+    <Position X="9.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAQAAAAgAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Array2D.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tic_Tac_Toe_25x25.EnermyNearWinEventArgs" Collapsed="true">
+    <Position X="7.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAQAAAAgAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Array2D.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tic_Tac_Toe_25x25.Array2D" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>VAIAACAAAAgigAwQIIICAASAAAYBIBgRAwAgUgAICEA=</HashCode>
+      <FileName>Array2D.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tic_Tac_Toe_25x25.ButtonManager" Collapsed="true">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAABAACAQAAAAAAQACIAAABAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ButtonManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tic_Tac_Toe_25x25.Form1" Collapsed="true">
+    <Position X="4" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAACAAAAGAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Form1.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tic_Tac_Toe_25x25.MainForm" Collapsed="true">
+    <Position X="7.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAAGAAYRAAAACAEAQCAAAgAAAAAAAQASBAEQA=</HashCode>
+      <FileName>MainForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tic_Tac_Toe_25x25.Program" Collapsed="true">
+    <Position X="2.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tic_Tac_Toe_25x25.WinEventArgs" Collapsed="true">
+    <Position X="4" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>WinEventArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tic_Tac_Toe_25x25.Data.Data" Collapsed="true">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAARQAAAAQAABIAAAEAAAAAAAAAAQAACAAAAAAAAAAE=</HashCode>
+      <FileName>Data\Data.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tic_Tac_Toe_25x25.Data.FirstData" Collapsed="true">
+    <Position X="9.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAARQAAAAQAABIAAAEAAAAAAAAAAQAACAAAAAAAAAAE=</HashCode>
+      <FileName>Data\FirstData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tic_Tac_Toe_25x25.Data.FirstDataSerializingXML" Collapsed="true">
+    <Position X="2.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Data\FirstDataSerializingXML.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tic_Tac_Toe_25x25.Data.SerializingXML" Collapsed="true">
+    <Position X="5.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAA=</HashCode>
+      <FileName>Data\SerializingXML.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tic_Tac_Toe_25x25.Data.User" Collapsed="true">
+    <Position X="2.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIA=</HashCode>
+      <FileName>Data\User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tic_Tac_Toe_25x25.LoginSignup.LoginForm" Collapsed="true">
+    <Position X="5.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAACAAABAABASAAgACAAAoAAACEEAAAAAAAQA=</HashCode>
+      <FileName>LoginSignup\LoginForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tic_Tac_Toe_25x25.LoginSignup.SignUp" Collapsed="true">
+    <Position X="9.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CgQDAAAAASAAABAAaACAQAECAAA4AAACgHAQAQBAIQA=</HashCode>
+      <FileName>LoginSignup\SignUp.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tic_Tac_Toe_25x25.Properties.Resources" Collapsed="true">
+    <Position X="4" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABEAAAAQAAAAAAAAAAAAAAAIA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tic_Tac_Toe_25x25.Properties.Settings" Collapsed="true">
+    <Position X="7.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

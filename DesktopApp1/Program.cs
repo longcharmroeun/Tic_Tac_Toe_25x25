@@ -20,7 +20,6 @@ namespace Tic_Tac_Toe_25x25
             Data.FirstDataSerializingXML.DeSerializingXML(ref firstData);
             Data.User user = new Data.User();
             Data.SerializingXML.DeSerializing(ref user);
-            int s = 0;
             if(user.DataList != null)
             {
                 for (int i = 0; i < user.DataList.Count; i++)
@@ -28,20 +27,22 @@ namespace Tic_Tac_Toe_25x25
                     if (firstData.User == user.DataList.ElementAt(i).User && firstData.Password == user.DataList.ElementAt(i).Password)
                     {
                         Application.Run(new MainForm(user, firstData));
+                        Application.Exit();
                     }
-                    else s++;
                 }
             }
-            else
+            else if(user.DataList == null)
             {
                 MessageBox.Show("Could not found data.");
                 Application.Run(new LoginSignup.LoginForm(user));
+                Application.Exit();
             }
-            if (s == user.DataList.Count)
+            else
             {
                 MessageBox.Show("Could Not Loging.");
                 Application.Run(new LoginSignup.LoginForm(user));
-            }
+                Application.Exit();
+            }           
         }
     }
 }

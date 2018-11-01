@@ -20,22 +20,25 @@ namespace Tic_Tac_Toe_25x25.LoginSignup
             this.user = user;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private bool IsUserUsed()
         {
-            bool IsUsed = false;
             if (user.DataList != null)
             {
                 for (int i = 0; i < user.DataList.Count; i++)
                 {
                     if (User.Text == user.DataList.ElementAt(i).User)
                     {
-                        IsUsed = true;
-                        MessageBox.Show("This User already Used.");
-                        break;
+                        return true;
                     }
                 }
-            }           
-            if (Password.Text == RPassword.Text && Password.Text != string.Empty && RPassword.Text != string.Empty && FName.Text != string.Empty && !IsUsed)
+            }
+            return false;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (IsUserUsed()) MessageBox.Show("This User already Used.");
+            else if (Password.Text == RPassword.Text && Password.Text != string.Empty && RPassword.Text != string.Empty && FName.Text != string.Empty)
             {
                 data.FullName = FName.Text;
                 data.DateBirth = Bdate.Value;
@@ -54,7 +57,7 @@ namespace Tic_Tac_Toe_25x25.LoginSignup
                     data.Sex = famale.Text;
                 }
                 else MessageBox.Show("Please choose a gender.");
-                if(user.DataList == null)
+                if (user.DataList == null)
                 {
                     user.DataList = new List<Data.Data>();
                 }
@@ -65,7 +68,7 @@ namespace Tic_Tac_Toe_25x25.LoginSignup
                 login.ShowDialog();
                 this.Close();
             }
-            else if (!IsUsed) MessageBox.Show("Password Not Match!");
+            else MessageBox.Show("Password Not Match.");
         }
 
         private void FName_KeyDown(object sender, KeyEventArgs e)

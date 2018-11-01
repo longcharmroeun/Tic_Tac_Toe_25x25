@@ -19,15 +19,7 @@ namespace Tic_Tac_Toe_25x25.LoginSignup
             this.user = user;
         }
 
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            SignUp sign = new SignUp(user);
-            this.Hide();
-            sign.ShowDialog();
-            this.Close();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
+        private bool IsLogin()
         {
             for (int i = 0; i < user.DataList.Count; i++)
             {
@@ -47,17 +39,34 @@ namespace Tic_Tac_Toe_25x25.LoginSignup
                         firstData.Gold = user.DataList.ElementAt(i).Gold;
                         firstData.Money = user.DataList.ElementAt(i).Money;
                         Data.FirstDataSerializingXML.SerializingXML(firstData);
-                        using (MainForm form = new MainForm(user,firstData))
+                        using (MainForm form = new MainForm(user, firstData))
                         {
                             this.Hide();
                             form.ShowDialog();
                             this.Close();
+                            return true;
                         }
                     }
                     else MessageBox.Show("Password not Match.");
                 }
             }
-            MessageBox.Show("User not found!");
+            return false;
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            SignUp sign = new SignUp(user);
+            this.Hide();
+            sign.ShowDialog();
+            this.Close();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (!IsLogin())
+            {
+                MessageBox.Show("User not found!");
+            }        
         }
 
         private void textBox1_KeyDown(object sender, KeyEventArgs e)
