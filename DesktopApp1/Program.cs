@@ -37,7 +37,7 @@ namespace Tic_Tac_Toe_25x25
                 Application.Run(new LoginSignup.LoginForm(user));
                 Application.Exit();
             }
-            else
+            if (firstData.User == null) 
             {
                 MessageBox.Show("Could Not Loging.");
                 Application.Run(new LoginSignup.LoginForm(user));

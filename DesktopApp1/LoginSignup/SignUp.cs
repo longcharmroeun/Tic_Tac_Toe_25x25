@@ -38,6 +38,7 @@ namespace Tic_Tac_Toe_25x25.LoginSignup
         private void button1_Click(object sender, EventArgs e)
         {
             if (IsUserUsed()) MessageBox.Show("This User already Used.");
+
             else if (Password.Text == RPassword.Text && Password.Text != string.Empty && RPassword.Text != string.Empty && FName.Text != string.Empty)
             {
                 data.FullName = FName.Text;
@@ -68,6 +69,7 @@ namespace Tic_Tac_Toe_25x25.LoginSignup
                 login.ShowDialog();
                 this.Close();
             }
+
             else MessageBox.Show("Password Not Match.");
         }
 
@@ -123,7 +125,8 @@ namespace Tic_Tac_Toe_25x25.LoginSignup
         {
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                data.Patch = openFileDialog1.FileName;
+                System.IO.File.Copy(openFileDialog1.FileName, $"..\\..\\UserImage\\{openFileDialog1.SafeFileName}");
+                data.Patch = $"..\\..\\UserImage\\{openFileDialog1.SafeFileName}";
                 pictureBox1.Image = Image.FromFile(openFileDialog1.FileName);
             }
         }
