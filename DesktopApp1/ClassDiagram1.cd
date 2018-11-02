@@ -31,7 +31,7 @@
   <Class Name="Tic_Tac_Toe_25x25.ButtonManager" Collapsed="true">
     <Position X="2.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAABAABAACAQAAAAAAQACIAgABAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAABAABAACAQAAAAAAQACIAgABAAAAACAAAAAAAA=</HashCode>
       <FileName>ButtonManager.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -45,7 +45,7 @@
   <Class Name="Tic_Tac_Toe_25x25.MainForm" Collapsed="true">
     <Position X="7.5" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAQAAAGAAYRAAAACAEAACAAAgAAAAAAAQASBAEQA=</HashCode>
+      <HashCode>AAAAAQAAAGAAQRAAAACAEAACAAAgAAAAAAEQASBAEQA=</HashCode>
       <FileName>MainForm.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -70,20 +70,6 @@
       <FileName>Data\Data.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Tic_Tac_Toe_25x25.Data.FirstData" Collapsed="true">
-    <Position X="9.25" Y="0.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAARQAAAAQAABIAAAEAAAAAAAAAAQAACAAAAAAAAAAE=</HashCode>
-      <FileName>Data\FirstData.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Tic_Tac_Toe_25x25.Data.FirstDataSerializingXML" Collapsed="true">
-    <Position X="2.25" Y="1.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAACAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Data\FirstDataSerializingXML.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="Tic_Tac_Toe_25x25.Data.SerializingXML" Collapsed="true">
     <Position X="5.75" Y="2.5" Width="1.5" />
     <TypeIdentifier>
@@ -96,13 +82,6 @@
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIA=</HashCode>
       <FileName>Data\User.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Tic_Tac_Toe_25x25.LoginSignup.LoginForm" Collapsed="true">
-    <Position X="5.75" Y="1.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>ACAAAAQAACAAABAABASAAgACAAAoAAACEEAAAAAAAQA=</HashCode>
-      <FileName>LoginSignup\LoginForm.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Tic_Tac_Toe_25x25.LoginSignup.SignUp" Collapsed="true">
@@ -121,7 +100,7 @@
   <Class Name="Tic_Tac_Toe_25x25.Properties.Settings" Collapsed="true">
     <Position X="7.5" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAABAAAAAAEAAAAAAAA=</HashCode>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />

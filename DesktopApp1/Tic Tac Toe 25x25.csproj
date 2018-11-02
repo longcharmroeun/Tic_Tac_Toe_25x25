@@ -52,8 +52,6 @@
     <Compile Include="Array2D.cs" />
     <Compile Include="ButtonManager.cs" />
     <Compile Include="Data\Data.cs" />
-    <Compile Include="Data\FirstData.cs" />
-    <Compile Include="Data\FirstDataSerializingXML.cs" />
     <Compile Include="Data\SerializingXML.cs" />
     <Compile Include="LoginSignup\LoginForm.cs">
       <SubType>Form</SubType>

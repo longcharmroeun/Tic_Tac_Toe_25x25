@@ -22,5 +22,17 @@ namespace Tic_Tac_Toe_25x25.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("-1")]
+        public int Index {
+            get {
+                return ((int)(this["Index"]));
+            }
+            set {
+                this["Index"] = value;
+            }
+        }
     }
 }

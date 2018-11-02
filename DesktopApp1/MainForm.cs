@@ -13,13 +13,13 @@ namespace Tic_Tac_Toe_25x25
     public partial class MainForm : Form
     {
         private Data.User user;
-        private Data.FirstData FirstData;
+        private int Index;
 
-        public MainForm(Data.User user,Data.FirstData firstData)
+        public MainForm(Data.User user, int Index)
         {
             InitializeComponent();
             this.user = user;
-            this.FirstData = firstData;
+            this.Index = Index;
         }
 
         private void PvAI_Click(object sender, EventArgs e)
@@ -34,10 +34,9 @@ namespace Tic_Tac_Toe_25x25
 
         private void signout_Click(object sender, EventArgs e)
         {
-            Data.FirstData firstData = new Data.FirstData();
-            firstData.User = null;
-            firstData.Password = null;
-            Data.FirstDataSerializingXML.SerializingXML(firstData);
+            Properties.Settings settings = new Properties.Settings();
+            settings.Index = -1;
+            settings.Save();
             LoginSignup.LoginForm sign = new LoginSignup.LoginForm(user);
             this.Hide();
             sign.ShowDialog();
@@ -46,19 +45,19 @@ namespace Tic_Tac_Toe_25x25
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            playername.Text = FirstData.FullName;
-            if (FirstData.Patch == null)
+            playername.Text = user.DataList.ElementAt(Index).FullName;
+            if (user.DataList.ElementAt(Index).Patch == null) 
             {
-                if(FirstData.Sex == "Male") pictureBox1.Image = Image.FromFile(@"../../UserImage/MaleAvatar.jpg");
+                if(user.DataList.ElementAt(Index).Sex == "Male") pictureBox1.Image = Image.FromFile(@"../../UserImage/MaleAvatar.jpg");
                 else pictureBox1.Image = Image.FromFile(@"../../UserImage/FamleAvatar.jpg");
             }
 
-            else pictureBox1.Image = Image.FromFile(FirstData.Patch);
+            else pictureBox1.Image = Image.FromFile(user.DataList.ElementAt(Index).Patch);
 
-            win.Text = FirstData.Win.ToString();
-            lose.Text = FirstData.Lose.ToString();
-            gold.Text = FirstData.Gold.ToString();
-            money.Text = FirstData.Money.ToString();
+            win.Text = user.DataList.ElementAt(Index).Win.ToString();
+            lose.Text = user.DataList.ElementAt(Index).Lose.ToString();
+            gold.Text = user.DataList.ElementAt(Index).Gold.ToString();
+            money.Text = user.DataList.ElementAt(Index).Money.ToString();
         }
     }
 }

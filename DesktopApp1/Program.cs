@@ -16,17 +16,24 @@ namespace Tic_Tac_Toe_25x25
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Data.FirstData firstData = new Data.FirstData();
-            Data.FirstDataSerializingXML.DeSerializingXML(ref firstData);
+
+            Properties.Settings settings = new Properties.Settings();
             Data.User user = new Data.User();
             Data.SerializingXML.DeSerializing(ref user);
-            if(user.DataList != null)
+
+            if (settings.Index < 0)
+            {
+                MessageBox.Show("Could Not Loging.");
+                Application.Run(new LoginSignup.LoginForm(user));
+                Application.Exit();
+            }
+            else if(user.DataList != null)
             {
                 for (int i = 0; i < user.DataList.Count; i++)
                 {
-                    if (firstData.User == user.DataList.ElementAt(i).User && firstData.Password == user.DataList.ElementAt(i).Password)
+                    if (user.DataList.ElementAt(settings.Index).User == user.DataList.ElementAt(i).User && user.DataList.ElementAt(settings.Index).Password == user.DataList.ElementAt(i).Password)
                     {
-                        Application.Run(new MainForm(user, firstData));
+                        Application.Run(new MainForm(user, settings.Index));
                         Application.Exit();
                     }
                 }
@@ -37,12 +44,6 @@ namespace Tic_Tac_Toe_25x25
                 Application.Run(new LoginSignup.LoginForm(user));
                 Application.Exit();
             }   
-            if (firstData.User == null && user.DataList != null)
-            {
-                MessageBox.Show("Could Not Loging.");
-                Application.Run(new LoginSignup.LoginForm(user));
-                Application.Exit();
-            }
         }
     }
 }

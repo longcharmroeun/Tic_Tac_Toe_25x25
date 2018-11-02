@@ -13,10 +13,12 @@ namespace Tic_Tac_Toe_25x25.LoginSignup
     public partial class LoginForm : Form
     {
         private Data.User user;
+        private Properties.Settings Settings;
         public LoginForm(Data.User user)
         {
             InitializeComponent();
             this.user = user;
+            Settings = new Properties.Settings();
         }
 
         private bool IsLogin()
@@ -27,19 +29,10 @@ namespace Tic_Tac_Toe_25x25.LoginSignup
                 {
                     if (textBox2.Text == user.DataList.ElementAt(i).Password)
                     {
-                        Data.FirstData firstData = new Data.FirstData();
-                        firstData.User = user.DataList.ElementAt(i).User;
-                        firstData.Password = user.DataList.ElementAt(i).Password;
-                        firstData.FullName = user.DataList.ElementAt(i).FullName;
-                        firstData.DateBirth = user.DataList.ElementAt(i).DateBirth;
-                        firstData.Sex = user.DataList.ElementAt(i).Sex;
-                        firstData.Lose = user.DataList.ElementAt(i).Lose;
-                        firstData.Win = user.DataList.ElementAt(i).Win;
-                        firstData.Patch = user.DataList.ElementAt(i).Patch;
-                        firstData.Gold = user.DataList.ElementAt(i).Gold;
-                        firstData.Money = user.DataList.ElementAt(i).Money;
-                        Data.FirstDataSerializingXML.SerializingXML(firstData);
-                        using (MainForm form = new MainForm(user, firstData))
+                        Settings.Index = i;
+                        Settings.Save();
+
+                        using (MainForm form = new MainForm(user, i))
                         {
                             this.Hide();
                             form.ShowDialog();
