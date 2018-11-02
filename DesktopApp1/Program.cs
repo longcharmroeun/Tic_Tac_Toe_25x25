@@ -36,13 +36,13 @@ namespace Tic_Tac_Toe_25x25
                 MessageBox.Show("Could not found data.");
                 Application.Run(new LoginSignup.LoginForm(user));
                 Application.Exit();
-            }
-            if (firstData.User == null) 
+            }   
+            if (firstData.User == null && user.DataList != null)
             {
                 MessageBox.Show("Could Not Loging.");
                 Application.Run(new LoginSignup.LoginForm(user));
                 Application.Exit();
-            }           
+            }
         }
     }
 }

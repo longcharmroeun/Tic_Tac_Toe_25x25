@@ -31,7 +31,7 @@
   <Class Name="Tic_Tac_Toe_25x25.ButtonManager" Collapsed="true">
     <Position X="2.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAABAABAACAQAAAAAAQACIAAABAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAABAABAACAQAAAAAAQACIAgABAAAAAAAAAAAAAA=</HashCode>
       <FileName>ButtonManager.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -45,7 +45,7 @@
   <Class Name="Tic_Tac_Toe_25x25.MainForm" Collapsed="true">
     <Position X="7.5" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAQAAAGAAYRAAAACAEAQCAAAgAAAAAAAQASBAEQA=</HashCode>
+      <HashCode>AAAAAQAAAGAAYRAAAACAEAACAAAgAAAAAAAQASBAEQA=</HashCode>
       <FileName>MainForm.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -101,21 +101,21 @@
   <Class Name="Tic_Tac_Toe_25x25.LoginSignup.LoginForm" Collapsed="true">
     <Position X="5.75" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ACAAAAAAACAAABAABASAAgACAAAoAAACEEAAAAAAAQA=</HashCode>
+      <HashCode>ACAAAAQAACAAABAABASAAgACAAAoAAACEEAAAAAAAQA=</HashCode>
       <FileName>LoginSignup\LoginForm.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Tic_Tac_Toe_25x25.LoginSignup.SignUp" Collapsed="true">
     <Position X="9.25" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>CgQDAAAAASAAABAAaACAQAECAAA4AAACgHAQAQBAIQA=</HashCode>
+      <HashCode>CgQDAABAASAAABAAaACAQAECAAA4AAACgHAQAQBAIQA=</HashCode>
       <FileName>LoginSignup\SignUp.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Tic_Tac_Toe_25x25.Properties.Resources" Collapsed="true">
     <Position X="4" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAABEAAAAQAAAAAAAAAAAAAAAIA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAABGAAAAQAAAIAAAAAAAAAAAIA=</HashCode>
     </TypeIdentifier>
   </Class>
   <Class Name="Tic_Tac_Toe_25x25.Properties.Settings" Collapsed="true">

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Tic_Tac_Toe_25x25.Properties;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,15 +13,22 @@ namespace Tic_Tac_Toe_25x25
 {
     class ButtonManager
     {
+        readonly Image Circle;
+        readonly Image Cross;
         Array2D Array = new Array2D(25);
         private Random Random;
         public Button[] button;
+
         public ButtonManager(Form1 form)
         {
             Array.PeopleNearWinEvent += Array_PeopleNearWinEvent;
             Array.WinEvent += Array_WinEvent;
             Array.EnermyEvent += Array_EnermyEvent;
             Array.EnermyNearWinEvent += Array_EnermyNearWinEvent;
+
+            Circle = Resources.circle;
+            Cross = Resources.cross;
+
             Random = new Random();
             int x = 0, y = 1, index = 0;
             button = new Button[Array.Count];
@@ -49,12 +57,12 @@ namespace Tic_Tac_Toe_25x25
             MessageBox.Show("");
             if (!(Array.IsUsed(e.FirstIndex)) && !Array.IsOutBound(e.FirstIndex))
             {
-                button[e.FirstIndex].Image = Image.FromFile(@"..\..\Image\cross.png");
+                button[e.FirstIndex].Image = Cross;
                 Array.EnermyClick(e.FirstIndex);
             }
             else if (!(Array.IsUsed(e.LastIndex)) && !Array.IsOutBound(e.LastIndex))
             {
-                button[e.LastIndex].Image = Image.FromFile(@"..\..\Image\cross.png");
+                button[e.LastIndex].Image = Cross;
                 Array.EnermyClick(e.LastIndex);
             }
         }
@@ -63,12 +71,12 @@ namespace Tic_Tac_Toe_25x25
         {
             if (!(Array.IsUsed(e.FirstIndex)) && !Array.IsOutBound(e.FirstIndex))
             {
-                button[e.FirstIndex].Image = Image.FromFile(@"..\..\Image\cross.png");
+                button[e.FirstIndex].Image = Cross;
                 Array.EnermyClick(e.FirstIndex);
             }
             else if (!(Array.IsUsed(e.LastIndex)) && !Array.IsOutBound(e.LastIndex))
             {
-                button[e.LastIndex].Image = Image.FromFile(@"..\..\Image\cross.png");
+                button[e.LastIndex].Image = Cross;
                 Array.EnermyClick(e.LastIndex);
             }
         }
@@ -82,7 +90,7 @@ namespace Tic_Tac_Toe_25x25
                 int i = Random.Next(0, e.Index.Length);
                 if (!(Array.IsUsed(e.Index[i]) && !Array.IsOutBound(e.Index[i])) && !Array.IsFirstColumn(e.Index[i]) && !Array.IsFirstColumn(e.Index[i]) && !Array.IsUpRow(e.Index[i]) && !Array.IsDownRow(e.Index[i]))
                 {
-                    button[e.Index[i]].Image = Image.FromFile(@"..\..\Image\cross.png");
+                    button[e.Index[i]].Image = Cross;
                     Array.EnermyClick(e.Index[i]);
                     break;
                 }
@@ -94,7 +102,7 @@ namespace Tic_Tac_Toe_25x25
             Button button = (Button)sender;
             if (!Array.IsUsed(button.TabIndex))
             {
-                button.Image = Image.FromFile(@"..\..\Image\circle.png");
+                button.Image = Circle;
                 Array.PeopleClick(button.TabIndex);
             }
         }
