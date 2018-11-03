@@ -36,8 +36,11 @@
     <StartupObject>Tic_Tac_Toe_25x25.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -47,12 +50,16 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Array2D.cs" />
     <Compile Include="ButtonManager.cs" />
     <Compile Include="Data\Data.cs" />
     <Compile Include="Data\SerializingXML.cs" />
+    <Compile Include="Event\EnermyEventArgs.cs" />
+    <Compile Include="Event\EnermyNearWinEventArgs.cs" />
+    <Compile Include="Event\PeopleNearWinEventArgs.cs" />
     <Compile Include="LoginSignup\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -72,7 +79,7 @@
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Data\User.cs" />
-    <Compile Include="WinEventArgs.cs" />
+    <Compile Include="Event\WinEventArgs.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

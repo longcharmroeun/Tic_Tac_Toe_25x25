@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Tic_Tac_Toe_25x25
+namespace Tic_Tac_Toe_25x25.Event
 {
     class WinEventArgs : EventArgs
     {

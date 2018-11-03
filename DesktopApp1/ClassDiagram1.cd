@@ -1,26 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="Tic_Tac_Toe_25x25.EnermyEventArgs" Collapsed="true">
-    <Position X="5.75" Y="0.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
-      <FileName>Array2D.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Tic_Tac_Toe_25x25.PeopleNearWinEventArgs" Collapsed="true">
-    <Position X="9.25" Y="1.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAQAAAAgAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Array2D.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Tic_Tac_Toe_25x25.EnermyNearWinEventArgs" Collapsed="true">
-    <Position X="7.5" Y="0.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAQAAAAgAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Array2D.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="Tic_Tac_Toe_25x25.Array2D" Collapsed="true">
     <Position X="0.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
@@ -56,11 +35,11 @@
       <FileName>Program.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Tic_Tac_Toe_25x25.WinEventArgs" Collapsed="true">
+  <Class Name="Tic_Tac_Toe_25x25.Event.WinEventArgs" Collapsed="true">
     <Position X="4" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>QQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
-      <FileName>WinEventArgs.cs</FileName>
+      <FileName>Event\WinEventArgs.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Tic_Tac_Toe_25x25.Data.Data" Collapsed="true">
@@ -100,7 +79,7 @@
   <Class Name="Tic_Tac_Toe_25x25.Properties.Settings" Collapsed="true">
     <Position X="7.5" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAABAAAAAAEAAAAAAAA=</HashCode>
+      <HashCode>AAABAAAAAAAAAAAAAAAAIAAAAAABAAACAAEAAAAAAAA=</HashCode>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />

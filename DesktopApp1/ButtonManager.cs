@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Tic_Tac_Toe_25x25.Event;
 
 namespace Tic_Tac_Toe_25x25
 {

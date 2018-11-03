@@ -4,30 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Tic_Tac_Toe_25x25.Event;
 
 namespace Tic_Tac_Toe_25x25
 {
-    class EnermyEventArgs : EventArgs
-    {
-        public int[] Index { get; set; }
-        internal void Size(int index = 8)
-        {
-            this.Index = new int[index];
-        }
-    }
-
-    class PeopleNearWinEventArgs : EventArgs
-    {
-        public int LastIndex { get; set; }
-        public int FirstIndex { get; set; }
-    }
-
-    class EnermyNearWinEventArgs : EventArgs
-    {
-        public int LastIndex { get; set; }
-        public int FirstIndex { get; set; }
-    }
-
     class Array2D
     {
         protected WinEventArgs winEventArgs;
