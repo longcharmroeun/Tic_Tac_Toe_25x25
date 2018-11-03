@@ -27,11 +27,16 @@ namespace Tic_Tac_Toe_25x25
                 Application.Run(new LoginSignup.LoginForm(user));
                 Application.Exit();
             }
-            else if(user.DataList != null)
+            else if (settings.User == user.DataList.ElementAt(settings.Index).User && settings.Password == user.DataList.ElementAt(settings.Index).Password)
+            {
+                Application.Run(new MainForm(user, settings.Index));
+                Application.Exit();
+            }
+            else if (user.DataList != null)
             {
                 for (int i = 0; i < user.DataList.Count; i++)
                 {
-                    if (user.DataList.ElementAt(settings.Index).User == user.DataList.ElementAt(i).User && user.DataList.ElementAt(settings.Index).Password == user.DataList.ElementAt(i).Password)
+                    if (settings.User == user.DataList.ElementAt(i).User && settings.Password == user.DataList.ElementAt(i).Password)
                     {
                         Application.Run(new MainForm(user, settings.Index));
                         Application.Exit();
