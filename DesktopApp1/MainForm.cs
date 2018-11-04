@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Media;
 
 namespace Tic_Tac_Toe_25x25
 {
@@ -14,12 +15,14 @@ namespace Tic_Tac_Toe_25x25
     {
         private Data.User user;
         private int Index;
+        private ReplayListView ReplayList;
 
         public MainForm(Data.User user, int Index)
         {
             InitializeComponent();
             this.user = user;
             this.Index = Index;
+            ReplayList = new ReplayListView(user, Index);
         }
 
         private void PvAI_Click(object sender, EventArgs e)
@@ -32,7 +35,7 @@ namespace Tic_Tac_Toe_25x25
             }
         }
 
-        private void signout_Click(object sender, EventArgs e)
+        private void Signout_Click(object sender, EventArgs e)
         {
             Properties.Settings settings = new Properties.Settings();
             settings.Index = -1;
@@ -62,8 +65,15 @@ namespace Tic_Tac_Toe_25x25
 
         private void Replaytdata_Click(object sender, EventArgs e)
         {
-            ReplayListView replayList = new ReplayListView(user, Index);
-            replayList.Show();
+            if (Application.OpenForms[ReplayList.Name] == null)
+            {
+                ReplayList.Show();
+            }
+            else
+            {
+                SystemSounds.Beep.Play();
+                Application.OpenForms[ReplayList.Name].Focus();
+            }
         }
     }
 }

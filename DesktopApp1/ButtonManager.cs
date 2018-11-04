@@ -92,11 +92,13 @@ namespace Tic_Tac_Toe_25x25
             {
                 for (int j = 0; j < Array.Size; j++)
                 {
-                    this.button[index] = new System.Windows.Forms.Button();
-                    this.button[index].Location = new System.Drawing.Point(x, y);
-                    this.button[index].Size = new System.Drawing.Size(30, 30);
-                    this.button[index].TabIndex = index;
-                    this.button[index].UseVisualStyleBackColor = true;
+                    this.button[index] = new System.Windows.Forms.Button
+                    {
+                        Location = new System.Drawing.Point(x, y),
+                        Size = new System.Drawing.Size(30, 30),
+                        TabIndex = index,
+                        UseVisualStyleBackColor = true
+                    };
                     form.Controls.Add(button[index]);
                     x += 30;
                     index++;

@@ -76,7 +76,7 @@
             this.signout.TabIndex = 1;
             this.signout.Text = "Sign Out";
             this.signout.UseVisualStyleBackColor = false;
-            this.signout.Click += new System.EventHandler(this.signout_Click);
+            this.signout.Click += new System.EventHandler(this.Signout_Click);
             // 
             // pictureBox1
             // 
