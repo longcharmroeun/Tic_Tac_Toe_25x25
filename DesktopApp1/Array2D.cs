@@ -38,6 +38,14 @@ namespace Tic_Tac_Toe_25x25
             }
         }
 
+        public void Reset()
+        {
+            for (int i = 0; i < Count; i++)
+            {
+                Data[i] = -1;
+            }
+        }
+
         private void EventImplementClass()
         {
             winEventArgs = new WinEventArgs();

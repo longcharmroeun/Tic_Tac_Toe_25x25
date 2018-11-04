@@ -42,6 +42,7 @@
             this.lose = new System.Windows.Forms.Label();
             this.money = new System.Windows.Forms.Label();
             this.gold = new System.Windows.Forms.Label();
+            this.Replaytdata = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -68,12 +69,13 @@
             // 
             // signout
             // 
+            this.signout.BackColor = System.Drawing.SystemColors.Control;
             this.signout.Location = new System.Drawing.Point(812, 241);
             this.signout.Name = "signout";
             this.signout.Size = new System.Drawing.Size(75, 23);
             this.signout.TabIndex = 1;
             this.signout.Text = "Sign Out";
-            this.signout.UseVisualStyleBackColor = true;
+            this.signout.UseVisualStyleBackColor = false;
             this.signout.Click += new System.EventHandler(this.signout_Click);
             // 
             // pictureBox1
@@ -186,11 +188,22 @@
             this.gold.TabIndex = 16;
             this.gold.Text = "0";
             // 
+            // Replaytdata
+            // 
+            this.Replaytdata.Location = new System.Drawing.Point(564, 41);
+            this.Replaytdata.Name = "Replaytdata";
+            this.Replaytdata.Size = new System.Drawing.Size(75, 23);
+            this.Replaytdata.TabIndex = 17;
+            this.Replaytdata.Text = "ReplayData";
+            this.Replaytdata.UseVisualStyleBackColor = true;
+            this.Replaytdata.Click += new System.EventHandler(this.Replaytdata_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 749);
+            this.Controls.Add(this.Replaytdata);
             this.Controls.Add(this.gold);
             this.Controls.Add(this.money);
             this.Controls.Add(this.lose);
@@ -230,5 +243,6 @@
         private System.Windows.Forms.Label lose;
         private System.Windows.Forms.Label money;
         private System.Windows.Forms.Label gold;
+        private System.Windows.Forms.Button Replaytdata;
     }
 }

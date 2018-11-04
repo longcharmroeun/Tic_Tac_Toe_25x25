@@ -20,5 +20,13 @@ namespace Tic_Tac_Toe_25x25.Data
         public int Lose { get; set; }
         public int Money { get; set; }
         public int Gold { get; set; }
+        public struct Replay
+        {
+            public List<int> ReplayData { get; set; }
+            public DateTime ReplayDate { get; set; }
+            public bool IsPeopleFirst { get; set; }
+            public int[] WinData { get; set; }
+        }
+        public List<Replay> Replays { get; set; }
     }
 }

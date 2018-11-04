@@ -16,10 +16,16 @@ namespace Tic_Tac_Toe_25x25
     public partial class Form1 : Form
     {
         ButtonManager manager;
-        public Form1()
+        public Form1(Data.User user, int Index)
         {
             InitializeComponent();
-            manager = new ButtonManager(this);
+            manager = new ButtonManager(this, user, Index);
+        }
+
+        public Form1(Data.User user, int Index,int Replayindex)
+        {
+            InitializeComponent();
+            manager = new ButtonManager(this, user, Index, Replayindex);
         }
     }
 }

@@ -24,7 +24,7 @@ namespace Tic_Tac_Toe_25x25
 
         private void PvAI_Click(object sender, EventArgs e)
         {
-            using(Form1 form = new Form1())
+            using (Form1 form = new Form1(user, Index)) 
             {
                 this.Hide();
                 form.ShowDialog();
@@ -58,6 +58,12 @@ namespace Tic_Tac_Toe_25x25
             lose.Text = user.DataList.ElementAt(Index).Lose.ToString();
             gold.Text = user.DataList.ElementAt(Index).Gold.ToString();
             money.Text = user.DataList.ElementAt(Index).Money.ToString();
+        }
+
+        private void Replaytdata_Click(object sender, EventArgs e)
+        {
+            ReplayListView replayList = new ReplayListView(user, Index);
+            replayList.Show();
         }
     }
 }

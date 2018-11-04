@@ -23,26 +23,33 @@ namespace Tic_Tac_Toe_25x25.LoginSignup
 
         private bool IsLogin()
         {
-            for (int i = 0; i < user.DataList.Count; i++)
+            if(user.DataList == null)
             {
-                if (textBox1.Text == user.DataList.ElementAt(i).User)
+                return false;
+            }
+            else
+            {
+                for (int i = 0; i < user.DataList.Count; i++)
                 {
-                    if (textBox2.Text == user.DataList.ElementAt(i).Password)
+                    if (textBox1.Text == user.DataList.ElementAt(i).User)
                     {
-                        Settings.Index = i;
-                        Settings.User = user.DataList.ElementAt(i).User;
-                        Settings.Password = user.DataList.ElementAt(i).Password;
-                        Settings.Save();
-
-                        using (MainForm form = new MainForm(user, i))
+                        if (textBox2.Text == user.DataList.ElementAt(i).Password)
                         {
-                            this.Hide();
-                            form.ShowDialog();
-                            this.Close();
-                            return true;
+                            Settings.Index = i;
+                            Settings.User = user.DataList.ElementAt(i).User;
+                            Settings.Password = user.DataList.ElementAt(i).Password;
+                            Settings.Save();
+
+                            using (MainForm form = new MainForm(user, i))
+                            {
+                                this.Hide();
+                                form.ShowDialog();
+                                this.Close();
+                                return true;
+                            }
                         }
+                        else MessageBox.Show("Password not Match.");
                     }
-                    else MessageBox.Show("Password not Match.");
                 }
             }
             return false;

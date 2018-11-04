@@ -10,19 +10,19 @@
   <Class Name="Tic_Tac_Toe_25x25.ButtonManager" Collapsed="true">
     <Position X="2.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAABAABAACAQAAAAAAQACIAgABAAAAACAAAAAAAA=</HashCode>
+      <HashCode>AAAAAABAABAACAQAAAAAAQACIAgABAAAAQCAAAABAQA=</HashCode>
       <FileName>ButtonManager.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Tic_Tac_Toe_25x25.Form1" Collapsed="true">
-    <Position X="4" Y="1.5" Width="1.5" />
+    <Position X="2.25" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAACAAAAAAAACAAAAGAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Form1.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Tic_Tac_Toe_25x25.MainForm" Collapsed="true">
-    <Position X="7.5" Y="1.5" Width="1.5" />
+    <Position X="5.75" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAQAAAGAAQRAAAACAEAACAAAgAAAAAAEQASBAEQA=</HashCode>
       <FileName>MainForm.cs</FileName>
@@ -35,17 +35,10 @@
       <FileName>Program.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Tic_Tac_Toe_25x25.Event.WinEventArgs" Collapsed="true">
-    <Position X="4" Y="3.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>QQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
-      <FileName>Event\WinEventArgs.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="Tic_Tac_Toe_25x25.Data.Data" Collapsed="true">
     <Position X="4" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAARQAAAAQAABIAAAEAAAAAAAAAAQAACAAAAAAAAAAE=</HashCode>
+      <HashCode>AAARQAAAAQAABIAAAEAAAAAAAAAAQAACAQAAAAAAAAE=</HashCode>
       <FileName>Data\Data.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -57,14 +50,49 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Tic_Tac_Toe_25x25.Data.User" Collapsed="true">
-    <Position X="2.25" Y="3.5" Width="1.5" />
+    <Position X="4" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIA=</HashCode>
       <FileName>Data\User.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="Tic_Tac_Toe_25x25.Event.EnermyEventArgs" Collapsed="true">
+    <Position X="5.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Event\EnermyEventArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tic_Tac_Toe_25x25.Event.EnermyNearWinEventArgs" Collapsed="true">
+    <Position X="0.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAQAAAAgAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Event\EnermyNearWinEventArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tic_Tac_Toe_25x25.Event.PeopleNearWinEventArgs" Collapsed="true">
+    <Position X="0.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAQAAAAgAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Event\PeopleNearWinEventArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tic_Tac_Toe_25x25.Event.WinEventArgs" Collapsed="true">
+    <Position X="5.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Event\WinEventArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tic_Tac_Toe_25x25.LoginSignup.LoginForm" Collapsed="true">
+    <Position X="4" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAQAACAAABAABASAAgACAAAoAAACkEAAAAAAAQA=</HashCode>
+      <FileName>LoginSignup\LoginForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
   <Class Name="Tic_Tac_Toe_25x25.LoginSignup.SignUp" Collapsed="true">
-    <Position X="9.25" Y="2.5" Width="1.5" />
+    <Position X="2.25" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>CgQDAABAASAAABAAaACAQAECAAA4AAACgHAQAQBAIQA=</HashCode>
       <FileName>LoginSignup\SignUp.cs</FileName>
@@ -77,7 +105,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Tic_Tac_Toe_25x25.Properties.Settings" Collapsed="true">
-    <Position X="7.5" Y="2.5" Width="1.5" />
+    <Position X="0.5" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAABAAAAAAAAAAAAAAAAIAAAAAABAAACAAEAAAAAAAA=</HashCode>
     </TypeIdentifier>
