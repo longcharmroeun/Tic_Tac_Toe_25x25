@@ -35,7 +35,6 @@ namespace Tic_Tac_Toe_25x25.LoginSignup
                     {
                         if (textBox2.Text == user.DataList.ElementAt(i).Password)
                         {
-                            Settings.Index = i;
                             Settings.User = user.DataList.ElementAt(i).User;
                             Settings.Password = user.DataList.ElementAt(i).Password;
                             Settings.Save();

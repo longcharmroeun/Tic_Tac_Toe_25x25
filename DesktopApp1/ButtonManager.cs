@@ -14,8 +14,6 @@ namespace Tic_Tac_Toe_25x25
 {
     class ButtonManager
     {
-        readonly Image Circle;
-        readonly Image Cross;
         private Array2D Array;
         private Random Random;
         private readonly Button[] button;
@@ -41,9 +39,6 @@ namespace Tic_Tac_Toe_25x25
             Array.WinEvent += Array_WinEvent;
             Array.EnermyEvent += Array_EnermyEvent;
             Array.EnermyNearWinEvent += Array_EnermyNearWinEvent;
-
-            Circle = Resources.circle;
-            Cross = Resources.cross;
 
             Random = new Random();
             int x = 0, y = 1, index = 0;
@@ -83,9 +78,6 @@ namespace Tic_Tac_Toe_25x25
             timer.Tick += Timer_Tick;
             timer.Start();
 
-            Circle = Resources.circle;
-            Cross = Resources.cross;
-
             int x = 0, y = 1, index = 0;
             button = new Button[Array.Count];
             for (int i = 0; i < Array.Size; i++)
@@ -114,11 +106,11 @@ namespace Tic_Tac_Toe_25x25
             {
                 if (ReplaySum % 2 == 0)
                 {
-                    button[user.DataList[index].Replays.ElementAt(Replayindex).ReplayData.ElementAt(ReplaySum)].Image = Circle;
+                    button[user.DataList[index].Replays.ElementAt(Replayindex).ReplayData.ElementAt(ReplaySum)].Image = Properties.Resources.circle;
                 }
                 else if (ReplaySum % 2 == 1)
                 {
-                    button[user.DataList[index].Replays.ElementAt(Replayindex).ReplayData.ElementAt(ReplaySum)].Image = Cross;
+                    button[user.DataList[index].Replays.ElementAt(Replayindex).ReplayData.ElementAt(ReplaySum)].Image = Properties.Resources.cross;
                 }
                 ReplaySum++;
                 if (ReplaySum == user.DataList.ElementAt(index).Replays.ElementAt(Replayindex).ReplayData.Count) 
@@ -147,14 +139,14 @@ namespace Tic_Tac_Toe_25x25
             {
                 Replay.Add(e.FirstIndex);
                 Replay.Add(e.FirstIndex);
-                button[e.FirstIndex].Image = Cross;
+                button[e.FirstIndex].Image = Properties.Resources.cross;
                 Array.EnermyClick(e.FirstIndex);
             }
             else if (!(Array.IsUsed(e.LastIndex)) && !Array.IsOutBound(e.LastIndex))
             {
                 Replay.Add(e.LastIndex);
                 Replay.Add(e.LastIndex);
-                button[e.LastIndex].Image = Cross;
+                button[e.LastIndex].Image = Properties.Resources.cross;
                 Array.EnermyClick(e.LastIndex);
             }
         }
@@ -164,13 +156,13 @@ namespace Tic_Tac_Toe_25x25
             if (!(Array.IsUsed(e.FirstIndex)) && !Array.IsOutBound(e.FirstIndex))
             {
                 Replay.Add(e.FirstIndex);
-                button[e.FirstIndex].Image = Cross;
+                button[e.FirstIndex].Image = Properties.Resources.cross;
                 Array.EnermyClick(e.FirstIndex);
             }
             else if (!(Array.IsUsed(e.LastIndex)) && !Array.IsOutBound(e.LastIndex))
             {
                 Replay.Add(e.LastIndex);
-                button[e.LastIndex].Image = Cross;
+                button[e.LastIndex].Image = Properties.Resources.cross;
                 Array.EnermyClick(e.LastIndex);
             }
         }
@@ -185,7 +177,7 @@ namespace Tic_Tac_Toe_25x25
                 if (!(Array.IsUsed(e.Index[i]) && !Array.IsOutBound(e.Index[i])) && !Array.IsFirstColumn(e.Index[i]) && !Array.IsFirstColumn(e.Index[i]) && !Array.IsUpRow(e.Index[i]) && !Array.IsDownRow(e.Index[i]))
                 {
                     Replay.Add(e.Index[i]);
-                    button[e.Index[i]].Image = Cross;
+                    button[e.Index[i]].Image = Properties.Resources.cross;
                     Array.EnermyClick(e.Index[i]);
                     break;
                 }
@@ -198,7 +190,7 @@ namespace Tic_Tac_Toe_25x25
                     if (!(Array.IsUsed(i)))
                     {
                         Replay.Add(i);
-                        button[i].Image = Cross;
+                        button[i].Image = Properties.Resources.cross;
                         Array.EnermyClick(i);
                         break;
                     }
@@ -212,7 +204,7 @@ namespace Tic_Tac_Toe_25x25
             if (!Array.IsUsed(button.TabIndex))
             {
                 Replay.Add(button.TabIndex);
-                button.Image = Circle;
+                button.Image = Properties.Resources.circle;
                 Array.PeopleClick(button.TabIndex);
             }
         }

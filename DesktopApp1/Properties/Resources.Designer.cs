@@ -61,6 +61,15 @@ namespace Tic_Tac_Toe_25x25.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream Charlie_Puth___How_Long__Official_Video_ {
+            get {
+                return ResourceManager.GetStream("Charlie_Puth___How_Long__Official_Video_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap circle {
@@ -76,6 +85,26 @@ namespace Tic_Tac_Toe_25x25.Properties {
         internal static System.Drawing.Bitmap cross {
             get {
                 object obj = ResourceManager.GetObject("cross", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap FamleAvatar {
+            get {
+                object obj = ResourceManager.GetObject("FamleAvatar", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap MaleAvatar {
+            get {
+                object obj = ResourceManager.GetObject("MaleAvatar", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Media;
+using Tic_Tac_Toe_25x25.Properties;
 
 namespace Tic_Tac_Toe_25x25
 {
@@ -37,9 +38,9 @@ namespace Tic_Tac_Toe_25x25
 
         private void Signout_Click(object sender, EventArgs e)
         {
-            Properties.Settings settings = new Properties.Settings();
-            settings.Index = -1;
-            settings.Save();
+            Settings.Default.User = null;
+            Settings.Default.Password = null;
+            Settings.Default.Save();
             LoginSignup.LoginForm sign = new LoginSignup.LoginForm(user);
             this.Hide();
             sign.ShowDialog();
@@ -48,11 +49,13 @@ namespace Tic_Tac_Toe_25x25
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            SoundPlayer sound = new SoundPlayer(Properties.Resources.Charlie_Puth___How_Long__Official_Video_);
+            sound.Play();
             playername.Text = user.DataList.ElementAt(Index).FullName;
             if (user.DataList.ElementAt(Index).Patch == null) 
             {
-                if(user.DataList.ElementAt(Index).Sex == "Male") pictureBox1.Image = Image.FromFile(@"../../UserImage/MaleAvatar.jpg");
-                else pictureBox1.Image = Image.FromFile(@"../../UserImage/FamleAvatar.jpg");
+                if (user.DataList.ElementAt(Index).Sex == "Male") pictureBox1.Image = Properties.Resources.MaleAvatar;
+                else pictureBox1.Image = Properties.Resources.FamleAvatar;
             }
 
             else pictureBox1.Image = Image.FromFile(user.DataList.ElementAt(Index).Patch);
@@ -68,12 +71,18 @@ namespace Tic_Tac_Toe_25x25
             if (Application.OpenForms[ReplayList.Name] == null)
             {
                 ReplayList.Show();
+                ReplayList.Disposed += ReplayList_Disposed;
             }
             else
             {
                 SystemSounds.Beep.Play();
                 Application.OpenForms[ReplayList.Name].Focus();
             }
+        }
+
+        private void ReplayList_Disposed(object sender, EventArgs e)
+        {
+            ReplayList = new ReplayListView(user, Index);
         }
     }
 }
