@@ -38,6 +38,7 @@ namespace Tic_Tac_Toe_25x25
 
         private void Signout_Click(object sender, EventArgs e)
         {
+            Data.SerializingXML.Serializing(user);
             Settings.Default.User = null;
             Settings.Default.Password = null;
             Settings.Default.Save();
@@ -49,8 +50,6 @@ namespace Tic_Tac_Toe_25x25
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            SoundPlayer sound = new SoundPlayer(Properties.Resources.Charlie_Puth___How_Long__Official_Video_);
-            sound.Play();
             playername.Text = user.DataList.ElementAt(Index).FullName;
             if (user.DataList.ElementAt(Index).Patch == null) 
             {
@@ -83,6 +82,7 @@ namespace Tic_Tac_Toe_25x25
         private void ReplayList_Disposed(object sender, EventArgs e)
         {
             ReplayList = new ReplayListView(user, Index);
+            ReplayList.Disposed -= ReplayList_Disposed;
         }
     }
 }

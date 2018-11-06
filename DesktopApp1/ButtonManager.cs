@@ -174,7 +174,7 @@ namespace Tic_Tac_Toe_25x25
             {
                 s++;
                 int i = Random.Next(0, e.Index.Length);
-                if (!(Array.IsUsed(e.Index[i]) && !Array.IsOutBound(e.Index[i])) && !Array.IsFirstColumn(e.Index[i]) && !Array.IsFirstColumn(e.Index[i]) && !Array.IsUpRow(e.Index[i]) && !Array.IsDownRow(e.Index[i]))
+                if (!(Array.IsUsed(e.Index[i]) && !Array.IsOutBound(e.Index[i])))
                 {
                     Replay.Add(e.Index[i]);
                     button[e.Index[i]].Image = Properties.Resources.cross;
@@ -212,8 +212,6 @@ namespace Tic_Tac_Toe_25x25
         private void Array_WinEvent(object sender, WinEventArgs e)
         {
             user.DataList.ElementAt(index).Replays.Add(new Data.Data.Replay { ReplayData = Replay, ReplayDate = DateTime.Now, IsPeopleFirst = true, WinData = e.WinIndex });
-
-            Data.SerializingXML.Serializing(user);
 
             MessageBoxManager.Register();
             MessageBoxManager.Yes = "Play Again";
