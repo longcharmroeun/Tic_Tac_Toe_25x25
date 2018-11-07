@@ -25,6 +25,7 @@ namespace Tic_Tac_Toe_25x25
         private readonly Timer timer;
         private int ReplaySum;
         private readonly int Replayindex;
+        private bool IsPeopleFirst;
 
         public ButtonManager(Form1 form, Data.User user, int Index)
         {
@@ -32,6 +33,7 @@ namespace Tic_Tac_Toe_25x25
             this.user = user;
             this.index = Index;
             Replay = new List<int>();
+            IsPeopleFirst = true;
             MessageBoxManager = new MessageBoxManager();
             Array = new Array2D(25);
 
@@ -122,6 +124,27 @@ namespace Tic_Tac_Toe_25x25
                     }
                 }
             }
+
+            if (!user.DataList[index].Replays.ElementAt(Replayindex).IsPeopleFirst)
+            {
+                if (ReplaySum % 2 == 0)
+                {
+                    button[user.DataList[index].Replays.ElementAt(Replayindex).ReplayData.ElementAt(ReplaySum)].Image = Properties.Resources.cross;
+                }
+                else if (ReplaySum % 2 == 1)
+                {
+                    button[user.DataList[index].Replays.ElementAt(Replayindex).ReplayData.ElementAt(ReplaySum)].Image = Properties.Resources.circle;
+                }
+                ReplaySum++;
+                if (ReplaySum == user.DataList.ElementAt(index).Replays.ElementAt(Replayindex).ReplayData.Count)
+                {
+                    timer.Stop();
+                    for (int i = 0; i < user.DataList.ElementAt(index).Replays.ElementAt(Replayindex).WinData.Length; i++)
+                    {
+                        button[user.DataList.ElementAt(index).Replays.ElementAt(Replayindex).WinData[i]].BackColor = Color.Green;
+                    }
+                }
+            }
         }
 
         private void Reset()
@@ -138,13 +161,11 @@ namespace Tic_Tac_Toe_25x25
             if (!(Array.IsUsed(e.FirstIndex)) && !Array.IsOutBound(e.FirstIndex))
             {
                 Replay.Add(e.FirstIndex);
-                Replay.Add(e.FirstIndex);
                 button[e.FirstIndex].Image = Properties.Resources.cross;
                 Array.EnermyClick(e.FirstIndex);
             }
             else if (!(Array.IsUsed(e.LastIndex)) && !Array.IsOutBound(e.LastIndex))
             {
-                Replay.Add(e.LastIndex);
                 Replay.Add(e.LastIndex);
                 button[e.LastIndex].Image = Properties.Resources.cross;
                 Array.EnermyClick(e.LastIndex);
@@ -211,7 +232,7 @@ namespace Tic_Tac_Toe_25x25
 
         private void Array_WinEvent(object sender, WinEventArgs e)
         {
-            user.DataList.ElementAt(index).Replays.Add(new Data.Data.Replay { ReplayData = Replay, ReplayDate = DateTime.Now, IsPeopleFirst = true, WinData = e.WinIndex });
+            user.DataList.ElementAt(index).Replays.Add(new Data.Data.Replay { ReplayData = Replay, ReplayDate = DateTime.Now, IsPeopleFirst = this.IsPeopleFirst, WinData = e.WinIndex });
 
             MessageBoxManager.Register();
             MessageBoxManager.Yes = "Play Again";
@@ -229,7 +250,9 @@ namespace Tic_Tac_Toe_25x25
                 Win = MessageBox.Show("You Win!", "Info", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information);
                 MessageBoxManager.Unregister();
                 if (Win == DialogResult.Yes)
-                {                   
+                {
+                    IsPeopleFirst = false;
+                    Replay.Clear();
                     Reset();
                     for (int i = 0; i < e.WinIndex.Length; i++)
                     {
@@ -262,6 +285,8 @@ namespace Tic_Tac_Toe_25x25
                 MessageBoxManager.Unregister();
                 if (Lose == DialogResult.Yes)
                 {
+                    IsPeopleFirst = true;
+                    Replay.Clear();
                     Reset();
                     for (int i = 0; i < e.WinIndex.Length; i++)
                     {
