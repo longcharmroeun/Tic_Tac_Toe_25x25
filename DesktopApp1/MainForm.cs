@@ -31,6 +31,7 @@ namespace Tic_Tac_Toe_25x25
             using (Form1 form = new Form1(user, Index)) 
             {
                 this.Hide();
+                ReplayList.Close();
                 form.ShowDialog();
                 this.Close();
             }

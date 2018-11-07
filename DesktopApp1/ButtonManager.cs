@@ -238,7 +238,7 @@ namespace Tic_Tac_Toe_25x25
                 }
                 else if (Win == DialogResult.No)
                 {
-                    using (MainForm main = new MainForm(user, index))
+                    using(MainForm main = new MainForm(user, index))
                     {
                         Form1.Hide();
                         main.ShowDialog();

@@ -20,7 +20,7 @@ namespace Tic_Tac_Toe_25x25
             Application.SetCompatibleTextRenderingDefault(false);
 
             SoundPlayer sound = new SoundPlayer(Properties.Resources.Charlie_Puth___How_Long__Official_Video_);
-            sound.Play();
+            sound.PlayLooping();
 
             Data.User user = new Data.User();
             Data.SerializingXML.DeSerializing(ref user);
