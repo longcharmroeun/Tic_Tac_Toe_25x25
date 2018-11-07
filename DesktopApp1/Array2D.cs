@@ -1005,6 +1005,327 @@ namespace Tic_Tac_Toe_25x25
             }
         }
 
+        protected void PeopleWinForWard()
+        {
+            int index = 0, win = 0, count = Size - 1;
+            for (int i = Size - 5; i >= 0; i--)
+            {
+                index = i;
+                for (int j = i; j < Size; j++)
+                {
+                    if (Data[index] == 0)
+                    {
+                        if (win >= 0 && win < winEventArgs.WinIndex.Length)
+                        {
+                            winEventArgs.WinIndex[win] = index;
+                        }
+                        win++;
+                        if (win >= 5)
+                        {
+                            winEventArgs.IsPeoPleWin = true;
+                            WinEvent(this, winEventArgs);
+                        }
+                    }
+                    else win = 0;
+                    index += 26;
+                }
+                win = 0;
+                index = 0;
+            }
+
+            for (int i = Size; i < this.Count; i += Size)
+            {
+                index = i;
+                for (int j = 0; j < count; j++)
+                {
+                    if (Data[index] == 0)
+                    {
+                        if (win >= 0 && win < winEventArgs.WinIndex.Length)
+                        {
+                            winEventArgs.WinIndex[win] = index;
+                        }
+                        win++;
+                        if (win >= 5)
+                        {
+                            winEventArgs.IsPeoPleWin = true;
+                            WinEvent(this, winEventArgs);
+                        }
+                    }
+                    else win = 0;
+                    index += 26;
+                }
+                win = 0;
+                index = 0;
+                if (count < 4) break;
+                count--;
+            }
+        }
+
+        protected void PeopleWinBackWard()
+        {
+            int index = 0, win = 0, count = Size - 1;
+            for (int i = 4; i < Size; i++)
+            {
+                index = i;
+                for (int j = i; j <= i+i; j++)
+                {
+                    if (Data[index] == 0)
+                    {
+                        if (win >= 0 && win < winEventArgs.WinIndex.Length)
+                        {
+                            winEventArgs.WinIndex[win] = index;
+                        }
+                        win++;
+                        if (win >= 5)
+                        {
+                            winEventArgs.IsPeoPleWin = true;
+                            WinEvent(this, winEventArgs);
+                        }
+                    }
+                    else win = 0;
+                    index += 24;
+                }
+                win = 0;
+            }
+            win = 0;
+            index = 0;
+
+            for (int i = 24+25; i <= this.Count; i+=Size)
+            {
+                index = i;
+                for (int j = i; j < i+count; j++)
+                {
+                    if (Data[index] == 0)
+                    {
+                        if (win >= 0 && win < winEventArgs.WinIndex.Length)
+                        {
+                            winEventArgs.WinIndex[win] = index;
+                        }
+                        win++;
+                        if (win >= 5)
+                        {
+                            winEventArgs.IsPeoPleWin = true;
+                            WinEvent(this, winEventArgs);
+                        }
+                    }
+                    else win = 0;
+                    index += 24;
+                }
+                win = 0;
+                index = 0;
+                if (count < 4) break;
+                count--;
+            }
+        }
+
+        protected void PeopleWinUpDown()
+        {
+            int sx = 0, winx = 0, winy = 0;
+            
+            for (int i = 0; i < Size; i++)
+            {
+                for (int j = i; j < Count; j += Size) 
+                {
+                    if (Data[j] == 0)
+                    {
+                        if (winy >= 0 && winy < winEventArgs.WinIndex.Length)
+                        {
+                            winEventArgs.WinIndex[winy] = j;
+                        }                        
+                        winy++;
+                        if (winy >= 5)
+                        {
+                            winEventArgs.IsPeoPleWin = true;
+                            WinEvent(this, winEventArgs);
+                        }
+                    }
+                    else winy = 0;
+                }
+                winy = 0;
+
+                for (int j = 0; j < Size; j++)
+                {
+                    if (Data[sx] == 0)
+                    {
+                        if (winx >= 0 && winx < winEventArgs.WinIndex.Length)
+                        {
+                            winEventArgs.WinIndex[winx] = sx;
+                        }
+                        winx++;
+                        if (winx >= 5)
+                        {
+                            winEventArgs.IsPeoPleWin = true;
+                            WinEvent(this, winEventArgs);
+                        }
+                    }
+                    else winx = 0;
+                    sx++;
+                }
+                winx = 0;
+            }
+        }
+
+        protected void EnermyWinForWard()
+        {
+            int index = 0, win = 0, count = Size - 1;
+            for (int i = Size - 5; i >= 0; i--)
+            {
+                index = i;
+                for (int j = i; j < Size; j++)
+                {
+                    if (Data[index] == 1)
+                    {
+                        if (win >= 0 && win < winEventArgs.WinIndex.Length)
+                        {
+                            winEventArgs.WinIndex[win] = index;
+                        }
+                        win++;
+                        if (win >= 5)
+                        {
+                            winEventArgs.IsEnermyWin = true;
+                            WinEvent(this, winEventArgs);
+                        }
+                    }
+                    else win = 0;
+                    index += 26;
+                }
+                win = 0;
+                index = 0;
+            }
+
+            for (int i = Size; i < this.Count; i += Size)
+            {
+                index = i;
+                for (int j = 0; j < count; j++)
+                {
+                    if (Data[index] == 1)
+                    {
+                        if (win >= 0 && win < winEventArgs.WinIndex.Length)
+                        {
+                            winEventArgs.WinIndex[win] = index;
+                        }
+                        win++;
+                        if (win >= 5)
+                        {
+                            winEventArgs.IsEnermyWin = true;
+                            WinEvent(this, winEventArgs);
+                        }
+                    }
+                    else win = 0;
+                    index += 26;
+                }
+                win = 0;
+                index = 0;
+                if (count < 4) break;
+                count--;
+            }   
+        }
+
+        protected void EnermyWinBackWard()
+        {
+            int index = 0, win = 0, count = Size - 1;
+            for (int i = 4; i < Size; i++)
+            {
+                index = i;
+                for (int j = i; j <= i + i; j++)
+                {
+                    if (Data[index] == 1)
+                    {
+                        if (win >= 0 && win < winEventArgs.WinIndex.Length)
+                        {
+                            winEventArgs.WinIndex[win] = index;
+                        }
+                        win++;
+                        if (win >= 5)
+                        {
+                            winEventArgs.IsEnermyWin = true;
+                            WinEvent(this, winEventArgs);
+                        }
+                    }
+                    else win = 0;
+                    index += 24;
+                }
+                win = 0;
+            }
+            win = 0;
+            index = 0;
+
+            for (int i = 24 + 25; i <= this.Count; i += Size)
+            {
+                index = i;
+                for (int j = i; j < i + count; j++)
+                {
+                    if (Data[index] == 1)
+                    {
+                        if (win >= 0 && win < winEventArgs.WinIndex.Length)
+                        {
+                            winEventArgs.WinIndex[win] = index;
+                        }
+                        win++;
+                        if (win >= 5)
+                        {
+                            winEventArgs.IsEnermyWin = true;
+                            WinEvent(this, winEventArgs);
+                        }
+                    }
+                    else win = 0;
+                    index += 24;
+                }
+                win = 0;
+                index = 0;
+                if (count < 4) break;
+                count--;
+            }
+        }
+            
+        protected void EnermyWinUpDown()
+        {
+            int index = 0, winx = 0, winy = 0;
+
+            for (int i = 0; i < Size; i++)
+            {
+                for (int j = i; j < Count; j += Size)
+                {
+                    if (Data[j] == 1)
+                    {
+                        if (winy >= 0 && winy < winEventArgs.WinIndex.Length)
+                        {
+                            winEventArgs.WinIndex[winy] = j;
+                        }
+                        winy++;
+                        if (winy >= 5)
+                        {
+                            winEventArgs.IsEnermyWin = true;
+                            WinEvent(this, winEventArgs);
+                        }
+                    }
+                    else winy = 0;
+                }
+                winy = 0;
+
+                for (int j = 0; j < Size; j++)
+                {
+                    if (Data[index] == 1)
+                    {
+                        if (winx >= 0 && winx < winEventArgs.WinIndex.Length)
+                        {
+                            winEventArgs.WinIndex[winx] = index;
+                        }
+                        winx++;
+                        if (winx >= 5)
+                        {
+                            winEventArgs.IsEnermyWin = true;
+                            WinEvent(this, winEventArgs);
+                        }
+                    }
+                    else winx = 0;
+                    index++;
+                }
+                winx = 0;
+            }
+        }
+
+        //
 
         protected bool EnermyLostBackWard()
         {
@@ -1045,7 +1366,8 @@ namespace Tic_Tac_Toe_25x25
                         Used[win] = index;
                         win++;
 
-                        if (win == 2)
+                        /*
+                         if (win == 2)
                         {
                             if (!IsUpRow(Used[0]) && !IsFirstColumn(Used[1]))
                             {
@@ -1122,6 +1444,7 @@ namespace Tic_Tac_Toe_25x25
                                 
                             }
                         }
+                         */
 
                         if (win >= 3)
                         {
@@ -1228,7 +1551,8 @@ namespace Tic_Tac_Toe_25x25
                         Used[win] = index;
                         win++;
 
-                        if (win == 2)
+                        /*
+                         * if (win == 2)
                         {
                             if (!IsUpRow(Used[0]) && !IsFirstColumn(Used[1]))
                             {
@@ -1305,6 +1629,7 @@ namespace Tic_Tac_Toe_25x25
                                 
                             }
                         }
+                         */
 
                         if (win >= 3)
                         {
@@ -1379,7 +1704,6 @@ namespace Tic_Tac_Toe_25x25
             return false;
         }
 
-
         protected bool EnermyNearLostForWard()
         {
             int index = 0, win = 0, count = Size - 1;
@@ -1420,7 +1744,7 @@ namespace Tic_Tac_Toe_25x25
                         Used[win] = index;
                         win++;
 
-                        if (win == 2)
+                        /*if (win == 2)
                         {
                             if (!IsUpRow(Used[0]) && !IsFirstColumn(Used[1]))
                             {
@@ -1495,7 +1819,7 @@ namespace Tic_Tac_Toe_25x25
 
                                 
                             }
-                        }
+                        }*/
 
                         if (win >= 3)
                         {
@@ -1602,7 +1926,8 @@ namespace Tic_Tac_Toe_25x25
                         Used[win] = index;
                         win++;
 
-                        if (win == 2)
+                        /*
+                         if (win == 2)
                         {
                             if (!IsUpRow(Used[0]) && !IsFirstColumn(Used[1]))
                             {
@@ -1679,6 +2004,7 @@ namespace Tic_Tac_Toe_25x25
                                 
                             }
                         }
+                         */
 
                         if (win >= 3)
                         {
@@ -2206,327 +2532,8 @@ namespace Tic_Tac_Toe_25x25
             return false;
         }
 
-        protected void PeopleWinForWard()
-        {
-            int index = 0, win = 0, count = Size - 1;
-            for (int i = Size - 5; i >= 0; i--)
-            {
-                index = i;
-                for (int j = i; j < Size; j++)
-                {
-                    if (Data[index] == 0)
-                    {
-                        if (win >= 0 && win < winEventArgs.WinIndex.Length)
-                        {
-                            winEventArgs.WinIndex[win] = index;
-                        }
-                        win++;
-                        if (win >= 5)
-                        {
-                            winEventArgs.IsPeoPleWin = true;
-                            WinEvent(this, winEventArgs);
-                        }
-                    }
-                    else win = 0;
-                    index += 26;
-                }
-                win = 0;
-                index = 0;
-            }
-
-            for (int i = Size; i < this.Count; i += Size)
-            {
-                index = i;
-                for (int j = 0; j < count; j++)
-                {
-                    if (Data[index] == 0)
-                    {
-                        if (win >= 0 && win < winEventArgs.WinIndex.Length)
-                        {
-                            winEventArgs.WinIndex[win] = index;
-                        }
-                        win++;
-                        if (win >= 5)
-                        {
-                            winEventArgs.IsPeoPleWin = true;
-                            WinEvent(this, winEventArgs);
-                        }
-                    }
-                    else win = 0;
-                    index += 26;
-                }
-                win = 0;
-                index = 0;
-                if (count < 4) break;
-                count--;
-            }
-        }
-
-        protected void PeopleWinBackWard()
-        {
-            int index = 0, win = 0, count = Size - 1;
-            for (int i = 4; i < Size; i++)
-            {
-                index = i;
-                for (int j = i; j <= i+i; j++)
-                {
-                    if (Data[index] == 0)
-                    {
-                        if (win >= 0 && win < winEventArgs.WinIndex.Length)
-                        {
-                            winEventArgs.WinIndex[win] = index;
-                        }
-                        win++;
-                        if (win >= 5)
-                        {
-                            winEventArgs.IsPeoPleWin = true;
-                            WinEvent(this, winEventArgs);
-                        }
-                    }
-                    else win = 0;
-                    index += 24;
-                }
-                win = 0;
-            }
-            win = 0;
-            index = 0;
-
-            for (int i = 24+25; i <= this.Count; i+=Size)
-            {
-                index = i;
-                for (int j = i; j < i+count; j++)
-                {
-                    if (Data[index] == 0)
-                    {
-                        if (win >= 0 && win < winEventArgs.WinIndex.Length)
-                        {
-                            winEventArgs.WinIndex[win] = index;
-                        }
-                        win++;
-                        if (win >= 5)
-                        {
-                            winEventArgs.IsPeoPleWin = true;
-                            WinEvent(this, winEventArgs);
-                        }
-                    }
-                    else win = 0;
-                    index += 24;
-                }
-                win = 0;
-                index = 0;
-                if (count < 4) break;
-                count--;
-            }
-        }
-
-        protected void PeopleWinUpDown()
-        {
-            int sx = 0, winx = 0, winy = 0;
-            
-            for (int i = 0; i < Size; i++)
-            {
-                for (int j = i; j < Count; j += Size) 
-                {
-                    if (Data[j] == 0)
-                    {
-                        if (winy >= 0 && winy < winEventArgs.WinIndex.Length)
-                        {
-                            winEventArgs.WinIndex[winy] = j;
-                        }                        
-                        winy++;
-                        if (winy >= 5)
-                        {
-                            winEventArgs.IsPeoPleWin = true;
-                            WinEvent(this, winEventArgs);
-                        }
-                    }
-                    else winy = 0;
-                }
-                winy = 0;
-
-                for (int j = 0; j < Size; j++)
-                {
-                    if (Data[sx] == 0)
-                    {
-                        if (winx >= 0 && winx < winEventArgs.WinIndex.Length)
-                        {
-                            winEventArgs.WinIndex[winx] = sx;
-                        }
-                        winx++;
-                        if (winx >= 5)
-                        {
-                            winEventArgs.IsPeoPleWin = true;
-                            WinEvent(this, winEventArgs);
-                        }
-                    }
-                    else winx = 0;
-                    sx++;
-                }
-                winx = 0;
-            }
-        }
-
-        protected void EnermyWinForWard()
-        {
-            int index = 0, win = 0, count = Size - 1;
-            for (int i = Size - 5; i >= 0; i--)
-            {
-                index = i;
-                for (int j = i; j < Size; j++)
-                {
-                    if (Data[index] == 1)
-                    {
-                        if (win >= 0 && win < winEventArgs.WinIndex.Length)
-                        {
-                            winEventArgs.WinIndex[win] = index;
-                        }
-                        win++;
-                        if (win >= 5)
-                        {
-                            winEventArgs.IsEnermyWin = true;
-                            WinEvent(this, winEventArgs);
-                        }
-                    }
-                    else win = 0;
-                    index += 26;
-                }
-                win = 0;
-                index = 0;
-            }
-
-            for (int i = Size; i < this.Count; i += Size)
-            {
-                index = i;
-                for (int j = 0; j < count; j++)
-                {
-                    if (Data[index] == 1)
-                    {
-                        if (win >= 0 && win < winEventArgs.WinIndex.Length)
-                        {
-                            winEventArgs.WinIndex[win] = index;
-                        }
-                        win++;
-                        if (win >= 5)
-                        {
-                            winEventArgs.IsEnermyWin = true;
-                            WinEvent(this, winEventArgs);
-                        }
-                    }
-                    else win = 0;
-                    index += 26;
-                }
-                win = 0;
-                index = 0;
-                if (count < 4) break;
-                count--;
-            }   
-        }
-
-        protected void EnermyWinBackWard()
-        {
-            int index = 0, win = 0, count = Size - 1;
-            for (int i = 4; i < Size; i++)
-            {
-                index = i;
-                for (int j = i; j <= i + i; j++)
-                {
-                    if (Data[index] == 1)
-                    {
-                        if (win >= 0 && win < winEventArgs.WinIndex.Length)
-                        {
-                            winEventArgs.WinIndex[win] = index;
-                        }
-                        win++;
-                        if (win >= 5)
-                        {
-                            winEventArgs.IsEnermyWin = true;
-                            WinEvent(this, winEventArgs);
-                        }
-                    }
-                    else win = 0;
-                    index += 24;
-                }
-                win = 0;
-            }
-            win = 0;
-            index = 0;
-
-            for (int i = 24 + 25; i <= this.Count; i += Size)
-            {
-                index = i;
-                for (int j = i; j < i + count; j++)
-                {
-                    if (Data[index] == 1)
-                    {
-                        if (win >= 0 && win < winEventArgs.WinIndex.Length)
-                        {
-                            winEventArgs.WinIndex[win] = index;
-                        }
-                        win++;
-                        if (win >= 5)
-                        {
-                            winEventArgs.IsEnermyWin = true;
-                            WinEvent(this, winEventArgs);
-                        }
-                    }
-                    else win = 0;
-                    index += 24;
-                }
-                win = 0;
-                index = 0;
-                if (count < 4) break;
-                count--;
-            }
-        }
-            
-        protected void EnermyWinUpDown()
-        {
-            int index = 0, winx = 0, winy = 0;
-
-            for (int i = 0; i < Size; i++)
-            {
-                for (int j = i; j < Count; j += Size)
-                {
-                    if (Data[j] == 1)
-                    {
-                        if (winy >= 0 && winy < winEventArgs.WinIndex.Length)
-                        {
-                            winEventArgs.WinIndex[winy] = j;
-                        }
-                        winy++;
-                        if (winy >= 5)
-                        {
-                            winEventArgs.IsEnermyWin = true;
-                            WinEvent(this, winEventArgs);
-                        }
-                    }
-                    else winy = 0;
-                }
-                winy = 0;
-
-                for (int j = 0; j < Size; j++)
-                {
-                    if (Data[index] == 1)
-                    {
-                        if (winx >= 0 && winx < winEventArgs.WinIndex.Length)
-                        {
-                            winEventArgs.WinIndex[winx] = index;
-                        }
-                        winx++;
-                        if (winx >= 5)
-                        {
-                            winEventArgs.IsEnermyWin = true;
-                            WinEvent(this, winEventArgs);
-                        }
-                    }
-                    else winx = 0;
-                    index++;
-                }
-                winx = 0;
-            }
-        }
-
         //
+
         protected bool EnermyNearWin4Line()
         {
             int sx = 0, winx = 0, winy = 0;
